@@ -9,12 +9,12 @@ import java.util.Scanner;
  *
  * @param titulo El nuevo título de la descripción.
  * @throws IllegalArgumentException Si titulo es null, está vacío o contiene
- *                                  sólo espacios.
+ *                                  caracteres inválidos.
  * @author Michelle, Giselle, Iris, Matias, Sebastian, Camila
  * @version 0.1
  */
 
-public class TrabajoGupal8 {
+public class Grupal8 {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
