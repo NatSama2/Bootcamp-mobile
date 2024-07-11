@@ -1,4 +1,18 @@
+package dia8;
+
 import java.util.Scanner;
+
+/**
+ * Inserta un título en la clase descripción.
+ * Al ser el título obligatorio, si es nulo o vacío se lanzará
+ * una excepción.
+ *
+ * @param titulo El nuevo título de la descripción.
+ * @throws IllegalArgumentException Si titulo es null, está vacío o contiene
+ *                                  sólo espacios.
+ * @author Michelle, Giselle, Iris, Matias, Sebastian, Camila
+ * @version 0.1
+ */
 
 public class TrabajoGupal8 {
 
@@ -165,4 +179,5 @@ public class TrabajoGupal8 {
         // Cerrar el Scanner
         sc.close();
     }
+
 }
