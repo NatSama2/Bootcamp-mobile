@@ -2,32 +2,40 @@ import java.util.Scanner;
 
 public class EjercicioIndividual19 {
 
-  public static void main(String[] args) {
-    
-//     Utiliza tipos de datos, operadores, sentencias de control, ciclos y colecciones de Java
-// para resolver un problema de baja complejidad
+    public static void main(String[] args) {
 
-// Planteamiento del Problema:
+        // Utiliza tipos de datos, operadores, sentencias de control, ciclos y
+        // colecciones de Java
+        // para resolver un problema de baja complejidad
 
-// Desarrolle un programa en lenguaje Java tal que, al ingresar una cadena de texto o String por
-// teclado, tome dicha cadena y la lea carácter por carácter, y los despliegue por consola.
+        // Planteamiento del Problema:
 
-// De acuerdo con la cantidad de caracteres del String, debe crear un arreglo del mismo tamaño, e
-// ingresar en él cada letra anterior, en el mismo orden en el que aparecen en la cadena. Esto
-// independiente del tipo de carácter.
+        // Desarrolle un programa en lenguaje Java tal que, al ingresar una cadena de
+        // texto o String por
+        // teclado, tome dicha cadena y la lea carácter por carácter, y los despliegue
+        // por consola.
 
-// Finalmente, debe desplegar las letras del abecedario por consola, y al costado de cada una debe
-// indicar la cantidad de letras encontradas, sin hacer diferencia entre mayúsculas y minúsculas para
-// estos efectos.
+        // De acuerdo con la cantidad de caracteres del String, debe crear un arreglo
+        // del mismo tamaño, e
+        // ingresar en él cada letra anterior, en el mismo orden en el que aparecen en
+        // la cadena. Esto
+        // independiente del tipo de carácter.
 
-// Nota 1: Se debe validar que la cadena ingresada no esté vacía; si eso sucede, debe pedirlo
-// nuevamente.
-  
-// Nota 2: Recuerde que para obtener un carácter de un String puede usar el método CharAt.
+        // Finalmente, debe desplegar las letras del abecedario por consola, y al
+        // costado de cada una debe
+        // indicar la cantidad de letras encontradas, sin hacer diferencia entre
+        // mayúsculas y minúsculas para
+        // estos efectos.
 
+        // Nota 1: Se debe validar que la cadena ingresada no esté vacía; si eso sucede,
+        // debe pedirlo
+        // nuevamente.
 
-//Capturar la cadena ingresada por usuario
-Scanner ingresar = new Scanner(System.in);
+        // Nota 2: Recuerde que para obtener un carácter de un String puede usar el
+        // método CharAt.
+
+        // Capturar la cadena ingresada por usuario
+        Scanner ingresar = new Scanner(System.in);
         String text;
 
         // Validar que la cadena ingresada no esté vacía
@@ -39,7 +47,8 @@ Scanner ingresar = new Scanner(System.in);
             }
         } while (text.isEmpty());
 
-        // Convertir la cadena a minúsculas para evitar distinciones entre mayúsculas y minúsculas
+        // Convertir la cadena a minúsculas para evitar distinciones entre mayúsculas y
+        // minúsculas
         text = text.toLowerCase();
 
         // Leer carácter por carácter y mostrar en consola
@@ -72,5 +81,7 @@ Scanner ingresar = new Scanner(System.in);
             char letra = (char) ('a' + i);
             System.out.println(letra + ": " + contador[i]);
         }
+
+        ingresar.close();
     }
 }
