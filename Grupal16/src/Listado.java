@@ -1,27 +1,20 @@
 
 import java.util.ArrayList;
 
-
 public class Listado {
 
-            ArrayList<Usuario> us = new ArrayList();
+    ArrayList<Usuario> us = new ArrayList();
 
-           Profesional pr;
-           Cliente cl;
-           Administrativo ad;
+    Profesional pr;
+    Cliente cl;
+    Administrativo ad;
 
-
-
-
-
-
-
-// agregar Usuario
+    // agregar Usuario
     public void agregarUsuario(Usuario nuevoUsuario) {
         us.add(nuevoUsuario);
     }
 
-// mostrarUsuario
+    // mostrarUsuario
     public void mostrarUsuario() {
 
         for (Usuario tempUsuario : us) {
@@ -30,30 +23,23 @@ public class Listado {
         }
     }
 
-    public void mostrarAdministrativo(){
-      
-            System.out.println(ad.mostrarAdministrativo());
-       
-     }
-     public void mostrarCliente(){
-        
-         cl.mostrarCliente();
-       
-     }
-     public void mostrarProfesional(){
-        
-           pr.mostrarProfesional();
-       
-     }
+    public void mostrarAdministrativo() {
 
+        System.out.println(ad.mostrarAdministrativo());
 
-    
+    }
 
+    public void mostrarCliente() {
 
+        cl.mostrarCliente();
 
+    }
 
+    public void mostrarProfesional() {
 
+        pr.mostrarProfesional();
 
+    }
 
     public ArrayList<Usuario> getUs() {
         return us;
@@ -86,8 +72,5 @@ public class Listado {
     public void setAd(Administrativo ad) {
         this.ad = ad;
     }
-
-
-
 
 }
