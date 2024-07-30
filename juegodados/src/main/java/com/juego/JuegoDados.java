@@ -16,6 +16,18 @@ public class JuegoDados implements Juego {
   private static String jugador2 = "";
   private static Scanner scanner = new Scanner(System.in);
 
+  // GETERS TEST
+
+  public String getJugador1() {
+
+    return jugador1;
+  }
+
+  public String getJugador2() {
+
+    return jugador2;
+  }
+
   @Override
   public void iniciar() {
     while (true) {
@@ -95,4 +107,5 @@ public class JuegoDados implements Juego {
 
     scanner.close();
   }
+
 }
