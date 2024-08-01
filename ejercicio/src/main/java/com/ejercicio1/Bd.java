@@ -21,8 +21,15 @@ package com.ejercicio1;
  * Se podrá eliminar lo que eliminar su País y su capital.
  */
 
-public class Main {
-    public static void main(String[] args) {
-        System.out.println("Hello world!");
-    }
+public interface Bd {
+
+    void agregar(Pais pais);
+
+    // retorna pais
+    Pais buscar(String nombre);
+
+    void actualizar(String nombre, String nuevaCapital);
+
+    void eliminar(String nombre);
+
 }
