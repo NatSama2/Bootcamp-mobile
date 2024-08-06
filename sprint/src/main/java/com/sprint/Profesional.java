@@ -1,22 +1,23 @@
 package com.sprint;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class Profesional extends Usuario {
-
   private String titulo;
-  private String ingreso;
+  private Date fechaIngreso;
 
-  public Profesional(String titulo, String ingreso) {
-    this.titulo = titulo;
-    this.ingreso = ingreso;
-  }
-
+  // contructores
   public Profesional() {
   }
 
-  @Override
-  public String toString() {
-    return "Profesional [titulo=" + titulo + ", ingreso=" + ingreso + ", toString()=" + super.toString() + "]";
+  public Profesional(String nombre, Date fechaNacimiento, int run, int edad, String titulo, Date fechaIngreso) {
+    super(nombre, fechaNacimiento, run, edad);
+    this.titulo = titulo;
+    this.fechaIngreso = fechaIngreso;
   }
+
+  // getters y setters
 
   public String getTitulo() {
     return titulo;
@@ -26,12 +27,27 @@ public class Profesional extends Usuario {
     this.titulo = titulo;
   }
 
-  public String getIngreso() {
-    return ingreso;
+  public Date getFechaIngreso() {
+    return fechaIngreso;
   }
 
-  public void setIngreso(String ingreso) {
-    this.ingreso = ingreso;
+  public void setFechaIngreso(Date fechaIngreso) {
+    this.fechaIngreso = fechaIngreso;
+  }
+
+  // metodo to string
+
+  @Override
+  public String toString() {
+    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+    return super.toString() + ", Titulo: " + titulo + " fecha de ingreso: " + sdf.format(fechaIngreso);
+  }
+
+  @Override
+  public void analizarUsuario() {
+    super.analizarUsuario();
+    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+    System.out.println("Título: " + titulo + ", Fecha de Ingreso: " + sdf.format(fechaIngreso));
   }
 }
 

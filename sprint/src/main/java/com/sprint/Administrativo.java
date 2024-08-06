@@ -1,24 +1,22 @@
 package com.sprint;
 
+import java.util.Date;
+
 public class Administrativo extends Usuario {
-
   private String area;
-  private String experiencia;
+  private String experienciaPrevia;
 
-  public Administrativo(String area, String experiencia) {
-    this.area = area;
-    this.experiencia = experiencia;
-  }
+  // constructores
 
   public Administrativo() {
-
   }
 
-  @Override
-  public String toString() {
-    return "Administrativo [area=" + area + ", experiencia=" + experiencia + ", toString()=" + super.toString()
-        + "]";
+  public Administrativo(String nombre, Date fechaNacimiento, int run, int edad, String area, String experienciaPrevia) {
+    super(nombre, fechaNacimiento, run, edad);
+    this.area = area;
+    this.experienciaPrevia = experienciaPrevia;
   }
+  // getters y setters
 
   public String getArea() {
     return area;
@@ -28,12 +26,25 @@ public class Administrativo extends Usuario {
     this.area = area;
   }
 
-  public String getExperiencia() {
-    return experiencia;
+  public String getExperienciaPrevia() {
+    return experienciaPrevia;
   }
 
-  public void setExperiencia(String experiencia) {
-    this.experiencia = experiencia;
+  public void setExperienciaPrevia(String experienciaPrevia) {
+    this.experienciaPrevia = experienciaPrevia;
+  }
+
+  // metodo tostring
+
+  @Override
+  public String toString() {
+    return super.toString() + ", Area: " + area + ", experiencia previa: " + experienciaPrevia;
+  }
+
+  @Override
+  public void analizarUsuario() {
+    super.analizarUsuario();
+    System.out.println("Área: " + area + ", Experiencia Previa: " + experienciaPrevia);
   }
 
 }

@@ -1,61 +1,55 @@
 package com.sprint;
 
 public class Revision {
+  private int identificadorRevision;
+  private int identificadorVisita;
+  private String nombreRevision;
+  private String detalleRevisar;
+  private int estado; // 1 (sin problemas), 2 (con observaciones), 3 (no aprueba)
 
-  private int id;
-  private int idvisita;
-  private String nombrerev;
-  private String detalle;
-  private int estado;
-
-  @Override
-  public String toString() {
-    return "Revision [id=" + id + ", idvisita=" + idvisita + ", nombrerev=" + nombrerev + ", detalle=" + detalle
-        + ", estado=" + estado + ", toString()=" + super.toString() + "]";
+  public Revision() {
   }
 
-  public Revision(int id, int idvisita, String nombrerev, String detalle, int estado) {
-    this.id = id;
-    this.idvisita = idvisita;
-    this.nombrerev = nombrerev;
-    this.detalle = detalle;
+  public Revision(int identificadorRevisión, int identificadorVisita, String nombreRevisión,
+      String detalleRevisar, int estado) {
+    this.identificadorRevision = identificadorRevisión;
+    this.identificadorVisita = identificadorVisita;
+    this.nombreRevision = nombreRevisión;
+    this.detalleRevisar = detalleRevisar;
     this.estado = estado;
   }
 
-  public Revision() {
-
+  // Métodos accesores y mutadores
+  public int getIdentificadorRevision() {
+    return identificadorRevision;
   }
 
-  public int getId() {
-    return id;
+  public void setIdentificadorRevision(int identificadorRevisión) {
+    this.identificadorRevision = identificadorRevisión;
   }
 
-  public void setId(int id) {
-    this.id = id;
+  public int getIdentificadorVisita() {
+    return identificadorVisita;
   }
 
-  public int getIdvisita() {
-    return idvisita;
+  public void setIdentificadorVisita(int identificadorVisita) {
+    this.identificadorVisita = identificadorVisita;
   }
 
-  public void setIdvisita(int idvisita) {
-    this.idvisita = idvisita;
+  public String getNombreRevision() {
+    return nombreRevision;
   }
 
-  public String getNombrerev() {
-    return nombrerev;
+  public void setNombreRevision(String nombreRevisión) {
+    this.nombreRevision = nombreRevisión;
   }
 
-  public void setNombrerev(String nombrerev) {
-    this.nombrerev = nombrerev;
+  public String getDetalleRevisar() {
+    return detalleRevisar;
   }
 
-  public String getDetalle() {
-    return detalle;
-  }
-
-  public void setDetalle(String detalle) {
-    this.detalle = detalle;
+  public void setDetalleRevisar(String detalleRevisar) {
+    this.detalleRevisar = detalleRevisar;
   }
 
   public int getEstado() {
@@ -65,7 +59,15 @@ public class Revision {
   public void setEstado(int estado) {
     this.estado = estado;
   }
+
+  @Override
+  public String toString() {
+    return "Identificador de la Revisión: " + identificadorRevision + ", Identificador de la Visita: "
+        + identificadorVisita +
+        ", Nombre: " + nombreRevision + ", Detalle: " + detalleRevisar + ", Estado: " + estado;
+  }
 }
+
 /*
  * Identificador de la revisión: obligatorio, número interno manejado por la
  * compañía.

@@ -1,69 +1,79 @@
 package com.sprint;
 
 public class VisitaEnTerreno {
-
-  private int idrev;
-  private int idvisita;
-  private String nombrerev;
-  private String detalle;
-  private int estado;
-
-  public VisitaEnTerreno(int idrev, int idvisita, String nombrerev, String detalle, int estado) {
-    this.idrev = idrev;
-    this.idvisita = idvisita;
-    this.nombrerev = nombrerev;
-    this.detalle = detalle;
-    this.estado = estado;
-  }
+  private int identificadorVisita;
+  private String rutCliente;
+  private String dia; // Formato DD/MM/AAAA
+  private String hora; // Formato HH:MM
+  private String lugar;
+  private String comentarios;
 
   public VisitaEnTerreno() {
+  }
 
+  public VisitaEnTerreno(int identificadorVisita, String rutCliente, String dia, String hora,
+      String lugar, String comentarios) {
+    this.identificadorVisita = identificadorVisita;
+    this.rutCliente = rutCliente;
+    this.dia = dia;
+    this.hora = hora;
+    this.lugar = lugar;
+    this.comentarios = comentarios;
+  }
+
+  // Métodos accesores y mutadores
+  public int getIdentificadorVisita() {
+    return identificadorVisita;
+  }
+
+  public void setIdentificadorVisita(int identificadorVisita) {
+    this.identificadorVisita = identificadorVisita;
+  }
+
+  public String getRutCliente() {
+    return rutCliente;
+  }
+
+  public void setRutCliente(String rutCliente) {
+    this.rutCliente = rutCliente;
+  }
+
+  public String getDia() {
+    return dia;
+  }
+
+  public void setDia(String dia) {
+    this.dia = dia;
+  }
+
+  public String getHora() {
+    return hora;
+  }
+
+  public void setHora(String hora) {
+    this.hora = hora;
+  }
+
+  public String getLugar() {
+    return lugar;
+  }
+
+  public void setLugar(String lugar) {
+    this.lugar = lugar;
+  }
+
+  public String getComentarios() {
+    return comentarios;
+  }
+
+  public void setComentarios(String comentarios) {
+    this.comentarios = comentarios;
   }
 
   @Override
   public String toString() {
-    return "VisitaEnTerreno [idrev=" + idrev + ", idvisita=" + idvisita + ", nombrerev=" + nombrerev + ", detalle="
-        + detalle + ", estado=" + estado + ", toString()=" + super.toString() + "]";
-  }
-
-  public int getIdrev() {
-    return idrev;
-  }
-
-  public void setIdrev(int idrev) {
-    this.idrev = idrev;
-  }
-
-  public int getIdvisita() {
-    return idvisita;
-  }
-
-  public void setIdvisita(int idvisita) {
-    this.idvisita = idvisita;
-  }
-
-  public String getNombrerev() {
-    return nombrerev;
-  }
-
-  public void setNombrerev(String nombrerev) {
-    this.nombrerev = nombrerev;
-  }
-
-  public String getDetalle() {
-    return detalle;
-  }
-
-  public void setDetalle(String detalle) {
-    this.detalle = detalle;
-  }
-
-  public int getEstado() {
-    return estado;
-  }
-
-  public void setEstado(int estado) {
-    this.estado = estado;
+    return "Identificador de la Visita: " + identificadorVisita + ", RUT Cliente: " + rutCliente +
+        ", Día: " + dia + ", Hora: " + hora + ", Lugar: " + lugar + ", Comentarios: " + comentarios;
   }
 }
 

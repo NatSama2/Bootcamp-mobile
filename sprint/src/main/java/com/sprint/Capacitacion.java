@@ -1,50 +1,46 @@
 package com.sprint;
 
 public class Capacitacion {
-
-  private int id;
-  private int rut;
-
+  private int identificador;
+  private String rutCliente;
   private String dia;
   private String hora;
   private String lugar;
   private String duracion;
-  private int cantidad;
+  private int cantidadAsistentes;
 
-  @Override
-  public String toString() {
-    return "Capacitacion [id=" + id + ", rut=" + rut + ", dia=" + dia + ", hora=" + hora + ", lugar=" + lugar
-        + ", duracion=" + duracion + ", cantidad=" + cantidad + ", toString()=" + super.toString() + "]";
+  // constructores
+
+  public Capacitacion() {
   }
 
-  public Capacitacion(int id, int rut, String dia, String hora, String lugar, String duracion, int cantidad) {
-    this.id = id;
-    this.rut = rut;
+  public Capacitacion(int identificador, String rutCliente, String dia, String hora, String lugar, String duracion,
+      int cantidadAsistentes) {
+    this.identificador = identificador;
+    this.rutCliente = rutCliente;
     this.dia = dia;
     this.hora = hora;
     this.lugar = lugar;
     this.duracion = duracion;
-    this.cantidad = cantidad;
+    this.cantidadAsistentes = cantidadAsistentes;
   }
 
-  public Capacitacion() {
+  // getters y setters
 
+  public int getIdentificador() {
+    return identificador;
   }
 
-  public int getId() {
-    return id;
+  public void setIdentificador(int identificador) {
+    this.identificador = identificador;
   }
 
-  public void setId(int id) {
-    this.id = id;
+  public String getRutCliente() {
+    return rutCliente;
   }
 
-  public int getRut() {
-    return rut;
-  }
-
-  public void setRut(int rut) {
-    this.rut = rut;
+  public void setRutCliente(String rutCliente) {
+    this.rutCliente = rutCliente;
   }
 
   public String getDia() {
@@ -68,7 +64,7 @@ public class Capacitacion {
   }
 
   public void setLugar(String lugar) {
-    this.lugar = lugar;
+    lugar = lugar;
   }
 
   public String getDuracion() {
@@ -79,12 +75,33 @@ public class Capacitacion {
     this.duracion = duracion;
   }
 
-  public int getCantidad() {
-    return cantidad;
+  public int getCantidadAsistentes() {
+    return cantidadAsistentes;
   }
 
-  public void setCantidad(int cantidad) {
-    this.cantidad = cantidad;
+  public void setCantidadAsistentes(int cantidadAsistentes) {
+    this.cantidadAsistentes = cantidadAsistentes;
+  }
+
+  // metodo to string
+
+  @Override
+  public String toString() {
+    return "Capacitacion{" +
+        "identificador=" + identificador +
+        ", rutCliente='" + rutCliente + '\'' +
+        ", dia='" + dia + '\'' +
+        ", hora='" + hora + '\'' +
+        ", Lugar='" + lugar + '\'' +
+        ", duracion='" + duracion + '\'' +
+        ", cantidadAsistentes=" + cantidadAsistentes +
+        '}';
+  }
+
+  // metodo adicional
+  public String mostrarDetalle() {
+    return "La capacitación será en " + lugar + " a las " + hora + " del día " + dia +
+        " y durará " + duracion + " minutos";
   }
 
 }

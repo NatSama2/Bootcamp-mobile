@@ -1,44 +1,42 @@
 package com.sprint;
 
+import java.util.Date;
+
 public class Cliente extends Usuario {
-  private String rut;
+  private int rut;
   private String nombres;
   private String apellidos;
   private String telefono;
   private String afp;
-  private int salud;
+  private int sistemaSalud; // 1 es fonasa 2 para isapre
   private String direccion;
   private String comuna;
-  private int edad;
 
-  @Override
-  public String toString() {
-    return "Cliente [rut=" + rut + ", nombres=" + nombres + ", apellidos=" + apellidos + ", telefono=" + telefono
-        + ", afp=" + afp + ", salud=" + salud + ", direccion=" + direccion + ", comuna=" + comuna + ", edad="
-        + edad + ", toString()=" + super.toString() + "]";
+  // constructores
+  public Cliente() {
   }
 
-  public Cliente(String rut, String nombres, String apellidos, String telefono, String afp, int salud,
-      String direccion, String comuna, int edad) {
+  public Cliente(String nombre, Date fechaNacimiento, int run, int edad, int rut, String nombres, String apellidos,
+      String telefono, String afp, int sistemaSalud, String direccion, String comuna) {
+    super(nombre, fechaNacimiento, run, edad);
     this.rut = rut;
     this.nombres = nombres;
     this.apellidos = apellidos;
     this.telefono = telefono;
     this.afp = afp;
-    this.salud = salud;
+    this.sistemaSalud = sistemaSalud;
     this.direccion = direccion;
     this.comuna = comuna;
-    this.edad = edad;
   }
 
-  public Cliente() {
-  }
+  // getters y setters o accesores y mutadores
+  // get para c onseguir y set para establecer
 
-  public String getRut() {
+  public int getRut() {
     return rut;
   }
 
-  public void setRut(String rut) {
+  public void setRut(int rut) {
     this.rut = rut;
   }
 
@@ -74,12 +72,12 @@ public class Cliente extends Usuario {
     this.afp = afp;
   }
 
-  public int getSalud() {
-    return salud;
+  public int getSistemaSalud() {
+    return sistemaSalud;
   }
 
-  public void setSalud(int salud) {
-    this.salud = salud;
+  public void setSistemaSalud(int sistemaSalud) {
+    this.sistemaSalud = sistemaSalud;
   }
 
   public String getDireccion() {
@@ -97,13 +95,35 @@ public class Cliente extends Usuario {
   public void setComuna(String comuna) {
     this.comuna = comuna;
   }
+  // metodo to string
 
-  public int getEdad() {
-    return edad;
+  @Override
+  public String toString() {
+    return "Cliente{" +
+        "rut='" + rut + '\'' +
+        ", nombres='" + nombres + '\'' +
+        ", apellidos='" + apellidos + '\'' +
+        ", telefono='" + telefono + '\'' +
+        ", afp='" + afp + '\'' +
+        ", sistemaSalud=" + sistemaSalud +
+        ", direccion='" + direccion + '\'' +
+        ", comuna='" + comuna + '\'' +
+        '}';
   }
 
-  public void setEdad(int edad) {
-    this.edad = edad;
+  // metodos adionales
+  public String obtenerNombre() {
+    return nombres + " " + apellidos;
+  }
+
+  public String obtenerSitemaSalud() {
+    return sistemaSalud == 1 ? "Fonasa" : "Isapre";
+  }
+
+  @Override
+  public void analizarUsuario() {
+    super.analizarUsuario();
+    System.out.println("Direccion: " + direccion + ", comuna: " + comuna);
   }
 
 }

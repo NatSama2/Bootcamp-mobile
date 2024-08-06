@@ -1,11 +1,10 @@
 package com.sprint;
 
 public class Accidente {
-
-  private int id;
-  private int rut;
-  private String dia;
-  private String hora;
+  private int identificadorAccidente;
+  private String rutCliente;
+  private String dia; // Formato DD/MM/AAAA
+  private String hora; // Formato HH:MM
   private String lugar;
   private String origen;
   private String consecuencias;
@@ -13,9 +12,10 @@ public class Accidente {
   public Accidente() {
   }
 
-  public Accidente(int id, int rut, String dia, String hora, String lugar, String origen, String consecuencias) {
-    this.id = id;
-    this.rut = rut;
+  public Accidente(int identificadorAccidente, String rutCliente, String dia, String hora,
+      String lugar, String origen, String consecuencias) {
+    this.identificadorAccidente = identificadorAccidente;
+    this.rutCliente = rutCliente;
     this.dia = dia;
     this.hora = hora;
     this.lugar = lugar;
@@ -23,26 +23,21 @@ public class Accidente {
     this.consecuencias = consecuencias;
   }
 
-  @Override
-  public String toString() {
-    return "Accidente [id=" + id + ", rut=" + rut + ", dia=" + dia + ", hora=" + hora + ", lugar=" + lugar
-        + ", origen=" + origen + ", consecuencias=" + consecuencias + ", toString()=" + super.toString() + "]";
+  // Métodos accesores y mutadores
+  public int getIdentificadorAccidente() {
+    return identificadorAccidente;
   }
 
-  public int getId() {
-    return id;
+  public void setIdentificadorAccidente(int identificadorAccidente) {
+    this.identificadorAccidente = identificadorAccidente;
   }
 
-  public void setId(int id) {
-    this.id = id;
+  public String getRutCliente() {
+    return rutCliente;
   }
 
-  public int getRut() {
-    return rut;
-  }
-
-  public void setRut(int rut) {
-    this.rut = rut;
+  public void setRutCliente(String rutCliente) {
+    this.rutCliente = rutCliente;
   }
 
   public String getDia() {
@@ -85,6 +80,12 @@ public class Accidente {
     this.consecuencias = consecuencias;
   }
 
+  @Override
+  public String toString() {
+    return "Identificador del Accidente: " + identificadorAccidente + ", RUT Cliente: " + rutCliente +
+        ", Día: " + dia + ", Hora: " + hora + ", Lugar: " + lugar + ", Origen: " + origen +
+        ", Consecuencias: " + consecuencias;
+  }
 }
 
 /*

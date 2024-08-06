@@ -1,29 +1,26 @@
 package com.sprint;
 
-public class Usuario {
-    public static void main(String[] args) {
-        System.out.println("Hello world!");
-    }
+import java.util.Date;
 
+public abstract class Usuario implements Asesoria {
     private String nombre;
-    private String nacimiento;
-    private String run;
+    private Date fechaNacimiento;
+    private int run;
+    private int edad;
 
-    @Override
-    public String toString() {
-        return "Usuario [nombre=" + nombre + ", nacimiento=" + nacimiento + ", run=" + run + ", toString()="
-                + super.toString() + "]";
-    }
-
-    public Usuario(String nombre, String nacimiento, String run) {
-        this.nombre = nombre;
-        this.nacimiento = nacimiento;
-        this.run = run;
-    }
-
+    // constructores
     public Usuario() {
 
     }
+
+    public Usuario(String nombre, Date fechaNacimiento, int run, int edad) {
+        this.nombre = nombre;
+        this.fechaNacimiento = fechaNacimiento;
+        this.run = run;
+        this.edad = edad;
+    }
+
+    // getters y setters
 
     public String getNombre() {
         return nombre;
@@ -33,22 +30,51 @@ public class Usuario {
         this.nombre = nombre;
     }
 
-    public String getNacimiento() {
-        return nacimiento;
+    public Date getFechaNacimiento() {
+        return fechaNacimiento;
     }
 
-    public void setNacimiento(String nacimiento) {
-        this.nacimiento = nacimiento;
+    public void setFechaNacimiento(Date fechaNacimiento) {
+        this.fechaNacimiento = fechaNacimiento;
     }
 
-    public String getRun() {
+    public int getRun() {
         return run;
     }
 
-    public void setRun(String run) {
+    public void setRun(int run) {
         this.run = run;
     }
 
+    public int getEdad() {
+        return edad;
+    }
+
+    public void setEdad(int edad) {
+        this.edad = edad;
+    }
+
+    // metodo to string
+
+    @Override
+    public String toString() {
+        return "Usuario{" +
+                "nombre='" + nombre + '\'' +
+                ", fechaNacimiento=" + fechaNacimiento +
+                ", run='" + run + '\'' +
+                ", edad=" + edad +
+                '}';
+    }
+
+    // otros metodos pedidos
+    public String mostrarEdad() {
+        return "El usuario tiene: " + edad + "años";
+    }
+
+    @Override
+    public void analizarUsuario() {
+        System.out.println("Nombre: " + nombre + ", run: " + run);
+    }
 }
 
 /*
