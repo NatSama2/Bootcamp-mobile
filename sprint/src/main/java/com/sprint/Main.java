@@ -25,6 +25,7 @@ public class Main {
 
     // regex para dia, hora
     String regexHora = "^(0[0-9]|1[0-9]|2[0-3]):([0-5][0-9])$";
+    String regexRut = "^[0-9]+(?:\\.[0-9]+)*$";
 
     Contenedor contenedor = new Contenedor();
     Scanner sc = new Scanner(System.in);
@@ -65,7 +66,7 @@ public class Main {
           System.out.println("ingrese nombre (min 10 - max 50 caracteres): ");
           String nombreUsuario = sc.nextLine();
 
-          while (nombreUsuario.length() < 10 && nombreUsuario.length() > 50 && nombreUsuario.matches("[a-zA-Z ]+")) {
+          while (nombreUsuario.length() < 10 || nombreUsuario.length() > 50 || !nombreUsuario.matches("[a-zA-Z ]+")) {
             System.out.println("Nombre no valido, ingrese un nombre: ");
             nombreUsuario = sc.nextLine();
           }
@@ -79,23 +80,40 @@ public class Main {
             try {
               Date fechaUsuario = sdf.parse(fecha);
               System.out.println("Fecha de nacimiento registrada: " + fechaUsuario);
+              System.out.println("----------------------------------------");
               break;
             } catch (ParseException e) {
               System.out.println("Formato de la fecha invalido, use (dd/mm/yyyy)");
             }
           }
 
-          System.out.println("Ingrese Run: ");
-          int runCliente = sc.nextInt();
-          while (runCliente <= 7000000 || runCliente > 99999999) {
-            System.out.println("Rut no valido, ingrese un Rut: ");
-            runCliente = sc.nextInt();
-          }
-          System.out.println("Rut registrado: " + runCliente);
-          System.out.println("----------------------------------------");
-          sc.nextLine(); // Consume la nueva línea restante
+          // Validación del RUT
+          while (true) {
+            System.out.println("Ingrese Run: ");
+            String rut = sc.nextLine().replace(".", "").replace("-", ""); // Elimina puntos y guiones del RUT
 
+            if (rut.matches("^[0-9]+$")) { // Solo números
+              int runCliente;
+              try {
+                runCliente = Integer.parseInt(rut);
+              } catch (NumberFormatException e) {
+                System.out.println("Rut no valido, ingrese un Rut (solo números): ");
+                continue;
+              }
+
+              if (runCliente >= 7000000 && runCliente <= 99999999) {
+                System.out.println("Rut registrado: " + runCliente);
+                break;
+              } else {
+                System.out.println("Rut no valido, ingrese un Rut entre 7000000 y 99999999: ");
+              }
+            } else {
+              System.out.println("Rut no valido, ingrese un Rut (solo números): ");
+            }
+          }
+          System.out.println("----------------------------------------");
           break;
+
         case 2:
           // Guardar un cliente
           System.out.println(GREEN_BOLD + """
@@ -104,13 +122,32 @@ public class Main {
               *      Registro de Clientes        *
               ************************************
               """ + RESET_COLOR);
+
           System.out.println("Ingrese Rut: ");
-          int rutCliente = sc.nextInt();
-          while (rutCliente <= 7000000 || rutCliente > 99999999) {
-            System.out.println("Rut no valido, ingrese un Rut: ");
-            rutCliente = sc.nextInt();
+          String rutClienteStr = sc.nextLine().replace(".", "").replace("-", ""); // Elimina puntos y guiones del RUT
+          // Validación del RUT
+          if (rutClienteStr.matches("^[0-9]+$")) { // Solo números
+            int rutCliente;
+            try {
+              rutCliente = Integer.parseInt(rutClienteStr);
+            } catch (NumberFormatException e) {
+              System.out.println("Rut no valido, ingrese un Rut (solo números): ");
+              continue;
+            }
+            while (rutCliente < 7000000 || rutCliente > 99999999) {
+              System.out.println("Rut no valido, ingrese un Rut entre 7000000 y 99999999: ");
+              rutClienteStr = sc.nextLine().replace(".", "").replace("-", ""); // Elimina puntos y guiones del RUT
+              if (rutClienteStr.matches("^[0-9]+$")) {
+                rutCliente = Integer.parseInt(rutClienteStr);
+              } else {
+                System.out.println("Rut no valido, ingrese un Rut (solo números): ");
+                continue;
+              }
+            }
+            System.out.println("Rut registrado: " + rutCliente);
+          } else {
+            System.out.println("Rut no valido, ingrese un Rut (solo números): ");
           }
-          System.out.println("Rut registrado: " + rutCliente);
           System.out.println("----------------------------------------");
 
           // Limpiar el buffer del scanner
@@ -221,16 +258,19 @@ public class Main {
               *    Registro de Profesionales     *
               ************************************
               """ + RESET_COLOR);
+
           // ingreso nombre del titulo profesional
           while (true) {
-            System.out.println("Ingrese su titulo profesional: (min 10 - max 50 caracteres)");
+            System.out.println("Ingrese su título profesional: (min 10 - max 50 caracteres)");
             String tituloProfesional = sc.nextLine();
-            if (tituloProfesional.length() <= 50 && tituloProfesional.matches("^[a-zA-Z ]+")) {
-              System.out.println("titulo registrado: " + tituloProfesional);
+
+            if (tituloProfesional.length() >= 10 && tituloProfesional.length() <= 50
+                && tituloProfesional.matches("^[a-zA-Z ]+$")) {
+              System.out.println("Título registrado: " + tituloProfesional);
               System.out.println("----------------------------------------");
               break;
             } else {
-              System.out.println("El titulo tiene un max de 50 caracteres y espacios");
+              System.out.println("El título debe tener entre 10 y 50 caracteres y solo contener letras y espacios.");
             }
           }
           // ingreso de la fecha de ingreso
@@ -240,12 +280,14 @@ public class Main {
             try {
               Date fechaIngresoProfesional = sdf.parse(fecha);
               System.out.println("Fecha de ingreso registrada: " + fechaIngresoProfesional);
+              System.out.println("----------------------------------------");
               break;
             } catch (ParseException e) {
               System.out.println("Formato de la fecha invalido, use (dd/mm/yyyy)");
             }
           }
           break;
+
         case 4:
           // Guardar un Administrativo
           System.out.println(GREEN_BOLD + """
@@ -254,6 +296,7 @@ public class Main {
               *    Registro de Administrativos   *
               ************************************
               """ + RESET_COLOR);
+
           // ingreso area del administrativo
           while (true) {
             System.out.println("Ingrese area: (min 5 - max 20 caracteres)");
@@ -292,90 +335,146 @@ public class Main {
               ************************************
               """ + RESET_COLOR);
 
-          // generar identificador de la capacitacion
+          // Generar identificador de la capacitacion
           int identificadorCapacitacion = identificadorRandom(1000, 9999);
           System.out.println("""
               Se ha generado un Identificador...
               Identificador: """ + identificadorCapacitacion + """
               """);
-          // registrar rut del cliente de la capacitacion
-          System.out.println("Ingrese Rut Cliente Capacitacion: ");
-          int rutClienteCapacitacion = sc.nextInt();
-          while (rutClienteCapacitacion <= 7000000 || rutClienteCapacitacion > 99999999) {
-            System.out.println("Rut no valido, ingrese un Rut: ");
-            rutClienteCapacitacion = sc.nextInt();
-          }
-          System.out.println("Rut Cliente registrado: " + rutClienteCapacitacion);
-          System.out.println("----------------------------------------");
-          sc.nextLine(); // Consume la nueva línea restante
 
-          // ingreso dia de la capacitacion
+          // Registrar rut del cliente de la capacitacion
+          while (true) {
+            System.out.println("Ingrese RUT Cliente Capacitación: ");
+            String rutClienteCapacitacion = sc.nextLine().replace(".", "").replace("-", "");
+
+            // Validación del RUT
+            if (rutClienteCapacitacion.matches("^[0-9]+$")) { // Solo números
+              try {
+                int rutNumero = Integer.parseInt(rutClienteCapacitacion);
+
+                if (rutNumero >= 7000000 && rutNumero <= 99999999) {
+                  System.out.println("RUT registrado: " + rutClienteCapacitacion);
+                  System.out.println("----------------------------------------");
+                  break;
+                } else {
+                  System.out.println("RUT no válido, ingrese un RUT entre 7000000 y 99999999: ");
+                }
+              } catch (NumberFormatException e) {
+                System.out.println("RUT no válido, ingrese un RUT (solo números): ");
+              }
+            } else {
+              System.out.println("RUT no válido, ingrese un RUT (solo números): ");
+            }
+          }
+
+          // Ingreso del día de la capacitación
           while (true) {
             System.out.println("Ingrese día de capacitación (Lunes a Domingo): ");
             String diaCapacitacion = sc.nextLine();
             if (diaCapacitacion.matches("(?i)^(lunes|martes|mi[ée]rcoles|jueves|viernes|s[áa]bado|domingo)$")) {
-              System.out.println("Día registrado! :" + diaCapacitacion);
+              System.out.println("Día registrado: " + diaCapacitacion);
               System.out.println("----------------------------------------");
               break;
             } else {
               System.out.println("El día de la semana debe coincidir con Lunes a Domingo.");
             }
           }
-          // ingresar hora de la capacitacion
+
+          // Ingreso de la hora de la capacitación
           while (true) {
             System.out.println("Ingrese una hora: (hh:mm)");
             String horaCapacitacion = sc.nextLine();
 
             if (horaCapacitacion.matches(regexHora)) {
               System.out.println("Hora registrada: " + horaCapacitacion);
+              System.out.println("----------------------------------------");
               break;
             } else {
-              System.out.println("Ingresa una hora valida (hh:mm)");
+              System.out.println("Ingrese una hora válida en el formato (hh:mm).");
             }
           }
-          // ingresar lugar de la capacitacion
+
+          // Ingreso del lugar de la capacitación
           while (true) {
-            System.out.println("Ingrese el lugar de la capacitacion: (min 10 - max 50 caracteres");
+            System.out.println("Ingrese el lugar de la capacitación (min 10 - max 50 caracteres):");
             String lugarCapacitacion = sc.nextLine();
 
-            if (lugarCapacitacion.length() >= 5 && lugarCapacitacion.length() <= 50
+            if (lugarCapacitacion.length() >= 10 && lugarCapacitacion.length() <= 50
                 && lugarCapacitacion.matches("^[a-zA-Z0-9 ]+$")) {
               System.out.println("Lugar registrado: " + lugarCapacitacion);
+              System.out.println("----------------------------------------");
               break;
             } else {
-              System.out.println("El lugar debe tener un min de 10 y max de 50");
+              System.out.println(
+                  "El lugar debe tener un mínimo de 10 y un máximo de 50 caracteres y puede contener letras, números y espacios.");
             }
           }
 
-          // duracion de la capacitacion
+          // Duración de la capacitación
           while (true) {
-            System.out.println("Ingrese la duracion de la capacitacion: ");
+            System.out.println("Ingrese la duración de la capacitación (en horas o minutos):");
             String duracionCapacitacion = sc.nextLine();
-            if (duracionCapacitacion.length() > 3 && duracionCapacitacion.length() <= 70
-                && duracionCapacitacion.matches("^[a-zA-Z0-9 ]+$")) {
-              System.out.println("Duracion registrada: " + duracionCapacitacion);
+            if (duracionCapacitacion.matches("^[0-9]+(h|m)?$")) {
+              // Verifica que sea un número seguido opcionalmente
+              // por 'h' o 'm'
+              System.out.println("Duración registrada: " + duracionCapacitacion);
+              System.out.println("----------------------------------------");
               break;
             } else {
-              System.out.println("Ingrese la duracion con un maximo de 70 caracteres");
+              System.out.println("Ingrese una duración válida, por ejemplo: '2h' o '30m'.");
             }
           }
-          // cantidad de asistentes
+
+          // Cantidad de asistentes
           while (true) {
             System.out.println("Ingrese la cantidad de asistentes:");
 
             try {
               int cantidadAsistentesCapacitacion = sc.nextInt();
-              sc.nextLine();
+              sc.nextLine(); // Consume la nueva línea restante
               if (cantidadAsistentesCapacitacion > 0 && cantidadAsistentesCapacitacion < 1000) {
-                System.out.println("Cantidad asistentes registrada: " + cantidadAsistentesCapacitacion);
+                System.out.println("Cantidad de asistentes registrada: " + cantidadAsistentesCapacitacion);
+                System.out.println("----------------------------------------");
                 break;
               } else {
-                System.out.println("La cantidad debe ser mayor a 0 y menor que 1000");
+                System.out.println("La cantidad debe ser mayor a 0 y menor que 1000.");
               }
             } catch (InputMismatchException e) {
-              System.out.println("Error de entrada del dato...");
-              sc.next();
+              System.out.println("Error de entrada de dato. Por favor, ingrese un número entero válido.");
+              sc.next(); // Limpiar el buffer del scanner
             }
+          }
+          break;
+
+        case 6:
+          // Eliminar usuario
+          System.out.println(RED_BOLD + """
+
+              ************************************
+              *        Eliminar Usuario          *
+              ************************************
+              """ + RESET_COLOR);
+
+          System.out.println("Ingrese el RUT del usuario que desea eliminar):");
+
+          String eliminarRut = sc.nextLine().trim();
+
+          String runSinPuntos = eliminarRut.replace(".", "");
+
+          try {
+
+            int runInt = Integer.parseInt(runSinPuntos);
+
+            contenedor.eliminarUsuario(runInt);
+
+            System.out.println(
+                GREEN_BOLD + "El usuario con RUT " + eliminarRut + " ha sido eliminado correctamente." + RESET_COLOR);
+            System.out.println("----------------------------------------");
+          } catch (NumberFormatException e) {
+
+            System.out
+                .println(RED_BOLD + "El RUT ingresado no es válido. Por favor, ingrese un rut válido." + RESET_COLOR);
+            System.out.println("----------------------------------------");
           }
           break;
 
