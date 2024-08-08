@@ -4,8 +4,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.InputMismatchException;
-import java.util.Scanner;
 import java.util.Random;
+import java.util.Scanner;
 
 public class Main {
   public static final String CYAN_COLOR = "\033[0;36m";
@@ -103,6 +103,7 @@ public class Main {
 
               if (runCliente >= 7000000 && runCliente <= 99999999) {
                 System.out.println("Rut registrado: " + runCliente);
+
                 break;
               } else {
                 System.out.println("Rut no valido, ingrese un Rut entre 7000000 y 99999999: ");
@@ -476,6 +477,50 @@ public class Main {
                 .println(RED_BOLD + "El RUT ingresado no es válido. Por favor, ingrese un rut válido." + RESET_COLOR);
             System.out.println("----------------------------------------");
           }
+          break;
+
+        case 7:
+          System.out.println(GREEN_BOLD + """
+              ************************************
+              *        Listado de Usuarios       *
+              ************************************
+              """ + RESET_COLOR);
+          contenedor.listarUsuarios();
+          System.out.println("----------------------------------------");
+          break;
+
+        case 8:
+          System.out.println(GREEN_BOLD + """
+              ************************************
+              *    Listado de Usuarios por Tipo  *
+              ************************************
+              """ + RESET_COLOR);
+          System.out.println("Ingrese el tipo de usuario (Cliente, Profesional, Administrativo): ");
+          String tipoUsuario = sc.nextLine();
+          Class<? extends Usuario> tipoClase;
+          if (tipoUsuario.equalsIgnoreCase("Cliente")) {
+            tipoClase = Cliente.class;
+          } else if (tipoUsuario.equalsIgnoreCase("Profesional")) {
+            tipoClase = Profesional.class;
+          } else if (tipoUsuario.equalsIgnoreCase("Administrativo")) {
+            tipoClase = Administrativo.class;
+          } else {
+            System.out.println("Tipo de usuario no válido.");
+            continue;
+          }
+          contenedor.listarUsuariosPorTipo(tipoClase);
+          System.out.println("----------------------------------------");
+          break;
+
+        case 9:
+          // Listar Capacitaciones
+          System.out.println(GREEN_BOLD + """
+              ************************************
+              *     Listado de Capacitaciones    *
+              ************************************
+              """ + RESET_COLOR);
+          contenedor.listarCapacitaciones();
+          System.out.println("----------------------------------------");
           break;
 
         case 10:
