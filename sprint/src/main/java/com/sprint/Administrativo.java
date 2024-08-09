@@ -11,9 +11,9 @@ public class Administrativo extends Usuario {
   public Administrativo() {
   }
 
-  public Administrativo(String nombre, Date fechaNacimiento, String run, int edad, String area,
+  public Administrativo(String nombre, Date fechaNacimiento, int run, String area,
       String experienciaPrevia) {
-    super(nombre, fechaNacimiento, run, edad);
+    super(nombre, fechaNacimiento, run);
     this.area = area;
     this.experienciaPrevia = experienciaPrevia;
   }
@@ -35,11 +35,12 @@ public class Administrativo extends Usuario {
     this.experienciaPrevia = experienciaPrevia;
   }
 
-  // metodo tostring
-
   @Override
   public String toString() {
-    return super.toString() + ", Area: " + area + ", experiencia previa: " + experienciaPrevia;
+    return "Administrativo{" +
+        "area='" + area + '\'' +
+        ", experienciaprevia='" + experienciaPrevia + '\'' +
+        '}';
   }
 
   @Override

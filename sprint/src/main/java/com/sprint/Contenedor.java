@@ -28,36 +28,45 @@ public class Contenedor {
   }
 
   // Método para eliminar un usuario por RUN
-  public void eliminarUsuario(String run) {
-    asesorias.removeIf(usuario -> {
-      if (usuario instanceof Usuario) {
-        return ((Usuario) usuario).getRun() == run;
-      }
-      return false;
-    });
+  public void eliminarUsuario(int run) {
+    asesorias.removeIf(usuario -> ((Usuario) usuario).getRun() == run);
   }
 
   // Otros métodos...
 
   public void listarUsuarios() {
-    asesorias.forEach(usuario -> {
-      if (usuario instanceof Usuario) {
-        System.out.println(usuario);
-      }
-    });
+    // asesorias.forEach(usuario -> {
+    // if (usuario instanceof Usuario) {
+    // System.out.println(usuario);
+    // }
+    // });
+    for (Asesoria asesoria : asesorias) {
+      asesoria.analizarUsuario();
+    }
   }
 
-  public void listarUsuariosPorTipo(Class<? extends Usuario> tipo) {
-    asesorias.forEach(usuario -> {
-      if (tipo.isInstance(usuario)) {
-        System.out.println(usuario);
+  // public void listarUsuariosPorTipo(Class<? extends Usuario> tipo) {
+  // asesorias.forEach(usuario -> {
+  // if (tipo.isInstance(usuario)) {
+  // System.out.println(usuario);
+  // }
+  // });
+  // }
+
+  public void listarUsuariosPorTipo(Class<?> tipo) {
+    for (Asesoria asesoria : asesorias) {
+      if (tipo.isInstance(asesoria)) {
+        asesoria.analizarUsuario();
       }
-    });
+    }
   }
 
   public void listarCapacitaciones() {
-    capacitaciones.forEach(capacitacion -> {
-      System.out.println(capacitacion);
-    });
+    // capacitaciones.forEach(capacitacion -> {
+    // System.out.println(capacitacion);
+    // });
+    for (Capacitacion capacitacion : capacitaciones) {
+      System.out.println(capacitacion.mostrarDetalle());
+    }
   }
 }

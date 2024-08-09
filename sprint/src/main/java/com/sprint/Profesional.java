@@ -11,8 +11,8 @@ public class Profesional extends Usuario {
   public Profesional() {
   }
 
-  public Profesional(String nombre, Date fechaNacimiento, String run, int edad, String titulo, Date fechaIngreso) {
-    super(nombre, fechaNacimiento, run, edad);
+  public Profesional(String nombre, Date fechaNacimiento, int run, String titulo, Date fechaIngreso) {
+    super(nombre, fechaNacimiento, run);
     this.titulo = titulo;
     this.fechaIngreso = fechaIngreso;
   }
@@ -35,12 +35,12 @@ public class Profesional extends Usuario {
     this.fechaIngreso = fechaIngreso;
   }
 
-  // metodo to string
-
   @Override
   public String toString() {
-    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-    return super.toString() + ", Titulo: " + titulo + " fecha de ingreso: " + sdf.format(fechaIngreso);
+    return "Profesional{" +
+        "titulo='" + titulo + '\'' +
+        ", fechaingreso='" + fechaIngreso + '\'' +
+        '}';
   }
 
   @Override

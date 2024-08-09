@@ -64,7 +64,7 @@ public class Capacitacion {
   }
 
   public void setLugar(String lugar) {
-    lugar = lugar;
+    this.lugar = lugar;
   }
 
   public String getDuracion() {

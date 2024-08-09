@@ -34,12 +34,12 @@ public class Main {
 
     // Menú principal
     int opcion;
-    Date fechaUsuario = null;
+    int runUsuario;
 
     // Ciclo do-while para mostrar el menu
     do {
       System.out.println(YELLOW_BOLD + """
-          |1| Guardar cliente
+          |1| Guardar Cliente
           |2| Guardar Profesional
           |3| Guardar Administrativo
           |4| Guardar Capacitacion
@@ -56,6 +56,9 @@ public class Main {
         case 1:
         case 2:
         case 3:
+          Date fechaUsuario = null;
+          String fecha;
+          String nombreUsuario;
           // Registro de usuarios
           System.out.println(GREEN_BOLD + """
               ************************************
@@ -63,20 +66,9 @@ public class Main {
               ************************************
               """ + RESET_COLOR);
 
-          // Definición de variables CLiente
-
-          String rutClienteStr = "";
-          String nombreCliente = "";
-          String apellidoCliente = "";
-          String telefonoCliente = "";
-          String afp = "";
-          int sistemaSalud = 0;
-          String direccion = "";
-          String comuna = "";
-
           // Ingreso nombre del usuario
           System.out.println("Ingrese nombre (min 10 - max 50 caracteres): ");
-          String nombreUsuario = sc.nextLine();
+          nombreUsuario = sc.nextLine();
           while (nombreUsuario.length() < 10 || nombreUsuario.length() > 50 || !nombreUsuario.matches("[a-zA-Z ]+")) {
             System.out.println("Nombre no válido, ingrese un nombre: ");
             nombreUsuario = sc.nextLine();
@@ -87,7 +79,7 @@ public class Main {
           // Ingreso fecha de nacimiento
           while (true) {
             System.out.println("Ingrese fecha de nacimiento (dd/MM/yyyy): ");
-            String fecha = sc.nextLine();
+            fecha = sc.nextLine();
             try {
               fechaUsuario = sdf.parse(fecha);
               System.out.println("Fecha de nacimiento registrada: " + fechaUsuario);
@@ -103,7 +95,6 @@ public class Main {
             System.out.println("Ingrese RUT: ");
             String rut = sc.nextLine().replace(".", "").replace("-", ""); // Elimina puntos y guiones del RUT
             if (rut.matches("^[0-9]+$")) { // Solo números
-              int runUsuario;
               try {
                 runUsuario = Integer.parseInt(rut);
               } catch (NumberFormatException e) {
@@ -123,6 +114,17 @@ public class Main {
           }
 
           if (opcion == 1) {
+            // Definición de variables CLiente
+            int rutCliente;
+            String rutClienteStr;
+            String nombreCliente = "";
+            String apellidoCliente = "";
+            String telefonoCliente = "";
+            String afp = "";
+            int sistemaSalud = 0;
+            String direccion = "";
+            String comuna = "";
+            int edad = 0;
             // Guardar un cliente
             System.out.println(GREEN_BOLD + """
                 ************************************
@@ -135,7 +137,6 @@ public class Main {
             rutClienteStr = sc.nextLine().replace(".", "").replace("-", ""); // Elimina puntos y guiones del RUT
             // Validación del RUT
             if (rutClienteStr.matches("^[0-9]+$")) { // Solo números
-              int rutCliente;
               try {
                 rutCliente = Integer.parseInt(rutClienteStr);
               } catch (NumberFormatException e) {
@@ -262,16 +263,29 @@ public class Main {
                     .println("La comuna tiene un máximo de 50 caracteres y puede contener letras, números y espacios");
               }
             }
+            // Ingreso edad
+            while (true) {
+              System.out.println("Ingrese Edad: ");
+              edad = sc.nextInt();
+              if (edad >= 0 || edad < 150) {
+                System.out.println("Edad: " + edad);
+                System.out.println("----------------------------------------");
+                break;
+              } else {
+                System.out.println("La edad debe ser mayor a cero, menor a 150  y solo números");
+              }
+            }
 
-            String runUsuario = "";
             // Llamar método de guardar cliente
-            Cliente cliente = new Cliente(nombreUsuario, fechaUsuario, runUsuario,
-                sistemaSalud, rutClienteStr, nombreCliente, apellidoCliente, telefonoCliente, afp,
-                sistemaSalud, direccion, comuna);
+            Cliente cliente = new Cliente(nombreUsuario, fechaUsuario, runUsuario, rutClienteStr, nombreCliente,
+                apellidoCliente, telefonoCliente, afp, sistemaSalud, direccion, comuna, edad);
             contenedor.almacenarCliente(cliente);
             System.out.println("Cliente registrado con éxito.");
 
           } else if (opcion == 2) {
+            String tituloProfesional;
+            Date fechaIngreso = null;
+
             // Guardar un profesional
             System.out.println(GREEN_BOLD + """
                 ************************************
@@ -282,7 +296,7 @@ public class Main {
             // Ingreso nombre del título profesional
             while (true) {
               System.out.println("Ingrese su título profesional (min 10 - max 50 caracteres):");
-              String tituloProfesional = sc.nextLine();
+              tituloProfesional = sc.nextLine();
               if (tituloProfesional.length() >= 10 && tituloProfesional.length() <= 50
                   && tituloProfesional.matches("^[a-zA-Z ]+$")) {
                 System.out.println("Título registrado: " + tituloProfesional);
@@ -293,71 +307,29 @@ public class Main {
               }
             }
 
-            // Ingreso especialidad
+            // Ingreso fecha de ingreso
             while (true) {
-              System.out.println("Ingrese su especialidad (min 5 - max 30 caracteres):");
-              String especialidad = sc.nextLine();
-              if (especialidad.length() >= 5 && especialidad.length() <= 30 && especialidad.matches("^[a-zA-Z ]+$")) {
-                System.out.println("Especialidad registrada: " + especialidad);
+              System.out.println("Ingrese su fecha de nacimiento (dd/MM/yyyy): ");
+              fecha = sc.nextLine();
+              try {
+                fechaIngreso = sdf.parse(fecha);
+                System.out.println("Fecha de ingreso registrada: " + fechaIngreso);
                 System.out.println("----------------------------------------");
                 break;
-              } else {
-                System.out.println("La especialidad debe tener entre 5 y 30 caracteres y ser solo letras");
+              } catch (ParseException e) {
+                System.out.println("Formato de la fecha inválido, use (dd/MM/yyyy)");
               }
             }
 
-            // Ingreso RUT
-            while (true) {
-              System.out.println("Ingrese RUT: ");
-              String rut = sc.nextLine().replace(".", "").replace("-", ""); // Elimina puntos y guiones del RUT
-              if (rut.matches("^[0-9]+$")) { // Solo números
-                int runProfesional;
-                try {
-                  runProfesional = Integer.parseInt(rut);
-                } catch (NumberFormatException e) {
-                  System.out.println("RUT no válido, ingrese un RUT (solo números): ");
-                  continue;
-                }
-                if (runProfesional >= 7000000 && runProfesional <= 99999999) {
-                  System.out.println("RUT registrado: " + runProfesional);
-                  System.out.println("----------------------------------------");
-                  break;
-                } else {
-                  System.out.println("RUT no válido, ingrese un RUT entre 7000000 y 99999999: ");
-                }
-              } else {
-                System.out.println("RUT no válido, ingrese un RUT (solo números): ");
-              }
-            }
+            Profesional profesional = new Profesional(nombreUsuario, fechaUsuario, runUsuario, tituloProfesional,
+                fechaIngreso);
+            contenedor.almacenarProfesional(profesional);
+            System.out.println("Profesional registrado con éxito.");
 
-            // Ingreso dirección del lugar de trabajo
-            while (true) {
-              System.out.println("Ingrese dirección del lugar de trabajo (max 70 caracteres): ");
-              String direccionTrabajo = sc.nextLine();
-              if (direccionTrabajo.length() <= 70 && direccionTrabajo.matches("^[a-zA-Z0-9 ]+$")) {
-                System.out.println("Dirección del lugar de trabajo registrada: " + direccionTrabajo);
-                System.out.println("----------------------------------------");
-                break;
-              } else {
-                System.out.println(
-                    "La dirección del lugar de trabajo tiene un máximo de 70 caracteres y puede contener letras, números y espacios");
-              }
-            }
-
-            // Ingreso nombre del lugar de trabajo
-            while (true) {
-              System.out.println("Ingrese nombre del lugar de trabajo (max 50 caracteres): ");
-              String nombreLugarTrabajo = sc.nextLine();
-              if (nombreLugarTrabajo.length() <= 50 && nombreLugarTrabajo.matches("^[a-zA-Z0-9 ]+$")) {
-                System.out.println("Nombre del lugar de trabajo registrado: " + nombreLugarTrabajo);
-                System.out.println("----------------------------------------");
-                break;
-              } else {
-                System.out.println(
-                    "El nombre del lugar de trabajo tiene un máximo de 50 caracteres y puede contener letras, números y espacios");
-              }
-            }
           } else if (opcion == 3) {
+            String experienciaLaboral;
+            String areaAdministrativa;
+
             // Guardar un administrativo
             System.out.println(GREEN_BOLD + """
                 ************************************
@@ -365,37 +337,10 @@ public class Main {
                 ************************************
                 """ + RESET_COLOR);
 
-            // Ingreso título académico
-            while (true) {
-              System.out.println("Ingrese título académico (min 10 - max 50 caracteres): ");
-              String tituloAcademico = sc.nextLine();
-              if (tituloAcademico.length() >= 10 && tituloAcademico.length() <= 50
-                  && tituloAcademico.matches("^[a-zA-Z ]+$")) {
-                System.out.println("Título académico registrado: " + tituloAcademico);
-                System.out.println("----------------------------------------");
-                break;
-              } else {
-                System.out.println("El título académico debe tener entre 10 y 50 caracteres y ser solo letras");
-              }
-            }
-
-            // Ingreso experiencia laboral
-            while (true) {
-              System.out.println("Ingrese experiencia laboral (min 5 - max 200 caracteres): ");
-              String experienciaLaboral = sc.nextLine();
-              if (experienciaLaboral.length() >= 5 && experienciaLaboral.length() <= 200) {
-                System.out.println("Experiencia laboral registrada: " + experienciaLaboral);
-                System.out.println("----------------------------------------");
-                break;
-              } else {
-                System.out.println("La experiencia laboral debe tener entre 5 y 200 caracteres");
-              }
-            }
-
             // Ingreso área administrativa
             while (true) {
               System.out.println("Ingrese área administrativa (min 5 - max 30 caracteres): ");
-              String areaAdministrativa = sc.nextLine();
+              areaAdministrativa = sc.nextLine();
               if (areaAdministrativa.length() >= 5 && areaAdministrativa.length() <= 30
                   && areaAdministrativa.matches("^[a-zA-Z ]+$")) {
                 System.out.println("Área administrativa registrada: " + areaAdministrativa);
@@ -405,6 +350,23 @@ public class Main {
                 System.out.println("El área administrativa debe tener entre 5 y 30 caracteres y ser solo letras");
               }
             }
+            // Ingreso experiencia laboral
+            while (true) {
+              System.out.println("Ingrese experiencia laboral (min 5 - max 200 caracteres): ");
+              experienciaLaboral = sc.nextLine();
+              if (experienciaLaboral.length() >= 5 && experienciaLaboral.length() <= 200) {
+                System.out.println("Experiencia laboral registrada: " + experienciaLaboral);
+                System.out.println("----------------------------------------");
+                break;
+              } else {
+                System.out.println("La experiencia laboral debe tener entre 5 y 200 caracteres");
+              }
+            }
+
+            Administrativo administrativo = new Administrativo(nombreUsuario, fechaUsuario, runUsuario,
+                areaAdministrativa, experienciaLaboral);
+            contenedor.almacenarAdministrativo(administrativo);
+            System.out.println("Administrativo registrado con éxito.");
           }
           break;
 
@@ -537,26 +499,39 @@ public class Main {
               ************************************
               """ + RESET_COLOR);
 
-          System.out.println("Ingrese el RUT del usuario que desea eliminar):");
+          System.out.println("Ingrese el RUT del usuario que desea eliminar:");
+          String rut = sc.nextLine().replace(".", "").replace("-", ""); // Elimina puntos y guiones del RUT
+          if (rut.matches("^[0-9]+$")) { // Solo números
+            try {
+              runUsuario = Integer.parseInt(rut);
+            } catch (NumberFormatException e) {
+              System.out.println("RUT no válido, ingrese un RUT (solo números): ");
+              continue;
+            }
+            if (runUsuario >= 7000000 && runUsuario <= 99999999) {
+              System.out.println("Buscando rut: " + runUsuario);
+              System.out.println("----------------------------------------");
+              try {
 
-          String eliminarRut = sc.nextLine().trim();
+                contenedor.eliminarUsuario(runUsuario);
 
-          String runSinPuntos = eliminarRut.replace(".", "");
-
-          try {
-
-            contenedor.eliminarUsuario(runSinPuntos);
-
-            System.out.println(
-                GREEN_BOLD + "El usuario con RUT " + eliminarRut + " ha sido eliminado correctamente." + RESET_COLOR);
-            System.out.println("----------------------------------------");
-          } catch (NumberFormatException e) {
-
-            System.out
-                .println(RED_BOLD + "El RUT ingresado no es válido. Por favor, ingrese un rut válido." + RESET_COLOR);
-            System.out.println("----------------------------------------");
+                System.out.println(
+                    GREEN_BOLD + "El usuario con RUT " + runUsuario + " ha sido eliminado correctamente."
+                        + RESET_COLOR);
+                System.out.println("----------------------------------------");
+              } catch (NumberFormatException e) {
+                System.out
+                    .println(
+                        RED_BOLD + "El RUT ingresado no es válido. Por favor, ingrese un rut válido." + RESET_COLOR);
+                System.out.println("----------------------------------------");
+              }
+              break;
+            } else {
+              System.out.println("RUT no válido, ingrese un RUT entre 7000000 y 99999999: ");
+            }
+          } else {
+            System.out.println("RUT no válido, ingrese un RUT (solo números): ");
           }
-          break;
 
         case 6:
           System.out.println(GREEN_BOLD + """

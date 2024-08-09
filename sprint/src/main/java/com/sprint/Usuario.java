@@ -1,23 +1,24 @@
 package com.sprint;
 
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.ZoneId;
 import java.util.Date;
 
 public abstract class Usuario implements Asesoria {
     private String nombre;
     private Date fechaNacimiento;
-    private String run;
-    private int edad;
+    private int run;
 
     // constructores
     public Usuario() {
 
     }
 
-    public Usuario(String nombre, Date fechaNacimiento, String run, int edad) {
+    public Usuario(String nombre, Date fechaNacimiento, int run) {
         this.nombre = nombre;
         this.fechaNacimiento = fechaNacimiento;
         this.run = run;
-        this.edad = edad;
     }
 
     // getters y setters
@@ -38,20 +39,12 @@ public abstract class Usuario implements Asesoria {
         this.fechaNacimiento = fechaNacimiento;
     }
 
-    public String getRun() {
+    public int getRun() {
         return run;
     }
 
-    public void setRun(String run) {
+    public void setRun(int run) {
         this.run = run;
-    }
-
-    public int getEdad() {
-        return edad;
-    }
-
-    public void setEdad(int edad) {
-        this.edad = edad;
     }
 
     // metodo to string
@@ -62,12 +55,18 @@ public abstract class Usuario implements Asesoria {
                 "nombre='" + nombre + '\'' +
                 ", fechaNacimiento=" + fechaNacimiento +
                 ", run='" + run + '\'' +
-                ", edad=" + edad +
                 '}';
     }
 
     // otros metodos pedidos
     public String mostrarEdad() {
+        LocalDate fechaNacimientoLocalDate = fechaNacimiento.toInstant()
+                .atZone(ZoneId.systemDefault())
+                .toLocalDate();
+
+        LocalDate fechaActual = LocalDate.now();
+
+        int edad = Period.between(fechaNacimientoLocalDate, fechaActual).getYears();
         return "El usuario tiene: " + edad + "años";
     }
 
