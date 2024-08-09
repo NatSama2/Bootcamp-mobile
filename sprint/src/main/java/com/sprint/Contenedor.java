@@ -28,7 +28,7 @@ public class Contenedor {
   }
 
   // Método para eliminar un usuario por RUN
-  public void eliminarUsuario(int run) {
+  public void eliminarUsuario(String run) {
     asesorias.removeIf(usuario -> {
       if (usuario instanceof Usuario) {
         return ((Usuario) usuario).getRun() == run;

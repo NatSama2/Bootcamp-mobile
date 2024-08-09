@@ -3,7 +3,7 @@ package com.sprint;
 import java.util.Date;
 
 public class Cliente extends Usuario {
-  private int rut;
+  private String rut;
   private String nombres;
   private String apellidos;
   private String telefono;
@@ -16,7 +16,8 @@ public class Cliente extends Usuario {
   public Cliente() {
   }
 
-  public Cliente(String nombre, Date fechaNacimiento, int run, int edad, int rut, String nombres, String apellidos,
+  public Cliente(String nombre, Date fechaNacimiento, String run, int edad,
+      String rut, String nombres, String apellidos,
       String telefono, String afp, int sistemaSalud, String direccion, String comuna) {
     super(nombre, fechaNacimiento, run, edad);
     this.rut = rut;
@@ -32,11 +33,11 @@ public class Cliente extends Usuario {
   // getters y setters o accesores y mutadores
   // get para c onseguir y set para establecer
 
-  public int getRut() {
+  public String getRut() {
     return rut;
   }
 
-  public void setRut(int rut) {
+  public void setRut(String rut) {
     this.rut = rut;
   }
 

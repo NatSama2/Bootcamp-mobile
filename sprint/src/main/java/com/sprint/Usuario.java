@@ -5,7 +5,7 @@ import java.util.Date;
 public abstract class Usuario implements Asesoria {
     private String nombre;
     private Date fechaNacimiento;
-    private int run;
+    private String run;
     private int edad;
 
     // constructores
@@ -13,7 +13,7 @@ public abstract class Usuario implements Asesoria {
 
     }
 
-    public Usuario(String nombre, Date fechaNacimiento, int run, int edad) {
+    public Usuario(String nombre, Date fechaNacimiento, String run, int edad) {
         this.nombre = nombre;
         this.fechaNacimiento = fechaNacimiento;
         this.run = run;
@@ -38,11 +38,11 @@ public abstract class Usuario implements Asesoria {
         this.fechaNacimiento = fechaNacimiento;
     }
 
-    public int getRun() {
+    public String getRun() {
         return run;
     }
 
-    public void setRun(int run) {
+    public void setRun(String run) {
         this.run = run;
     }
 

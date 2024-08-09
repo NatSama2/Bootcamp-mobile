@@ -25,7 +25,6 @@ public class Main {
 
     // Regex para dia, hora
     String regexHora = "^(0[0-9]|1[0-9]|2[0-3]):([0-5][0-9])$";
-    String regexRut = "^[0-9]+(?:\\.[0-9]+)*$";
 
     Contenedor contenedor = new Contenedor();
     Scanner sc = new Scanner(System.in);
@@ -63,6 +62,17 @@ public class Main {
               *      Registro de Usuarios        *
               ************************************
               """ + RESET_COLOR);
+
+          // Definición de variables CLiente
+
+          String rutClienteStr = "";
+          String nombreCliente = "";
+          String apellidoCliente = "";
+          String telefonoCliente = "";
+          String afp = "";
+          int sistemaSalud = 0;
+          String direccion = "";
+          String comuna = "";
 
           // Ingreso nombre del usuario
           System.out.println("Ingrese nombre (min 10 - max 50 caracteres): ");
@@ -122,7 +132,7 @@ public class Main {
 
             // Ingreso Rut
             System.out.println("Ingrese Rut Cliente: ");
-            String rutClienteStr = sc.nextLine().replace(".", "").replace("-", ""); // Elimina puntos y guiones del RUT
+            rutClienteStr = sc.nextLine().replace(".", "").replace("-", ""); // Elimina puntos y guiones del RUT
             // Validación del RUT
             if (rutClienteStr.matches("^[0-9]+$")) { // Solo números
               int rutCliente;
@@ -151,7 +161,7 @@ public class Main {
             // Ingreso y validación del nombre
             while (true) {
               System.out.println("Ingrese nombres (min 5 - max 30 caracteres): ");
-              String nombreCliente = sc.nextLine();
+              nombreCliente = sc.nextLine();
               if (nombreCliente.length() >= 5 && nombreCliente.length() <= 30 && nombreCliente.matches("[a-zA-Z ]+")) {
                 System.out.println("Nombre registrado: " + nombreCliente);
                 System.out.println("----------------------------------------");
@@ -164,7 +174,7 @@ public class Main {
             // Ingreso apellido
             while (true) {
               System.out.println("Ingrese apellidos (min 5 - max 30 caracteres): ");
-              String apellidoCliente = sc.nextLine();
+              apellidoCliente = sc.nextLine();
               if (apellidoCliente.length() >= 5 && apellidoCliente.length() <= 30
                   && apellidoCliente.matches("[a-zA-Z ]+")) {
                 System.out.println("apellidos registrados: " + apellidoCliente);
@@ -178,7 +188,7 @@ public class Main {
             // Ingreso telefono
             while (true) {
               System.out.println("Ingrese telefono (min 8 - max 9 numeros): ");
-              String telefonoCliente = sc.nextLine();
+              telefonoCliente = sc.nextLine();
               if (telefonoCliente.length() >= 8 && telefonoCliente.length() <= 9
                   && telefonoCliente.matches("^[0-9]{8,9}$")) {
                 System.out.println("Telefono registrado: " + telefonoCliente);
@@ -192,7 +202,7 @@ public class Main {
             // Ingreso AFP
             while (true) {
               System.out.println("Ingrese AFP (min 3 - max 30 caracteres): ");
-              String afp = sc.nextLine();
+              afp = sc.nextLine();
               if (afp.length() >= 3 && afp.length() <= 30 && afp.matches("[a-zA-Z ]+")) {
                 System.out.println("AFP registrada: " + afp);
                 System.out.println("----------------------------------------");
@@ -206,7 +216,7 @@ public class Main {
             while (true) {
               System.out.println("Ingrese Sistema de Salud (1 Fonasa - 2 Isapre): ");
               try {
-                int sistemaSalud = sc.nextInt();
+                sistemaSalud = sc.nextInt();
                 sc.nextLine(); // Limpiar el buffer
                 if (sistemaSalud == 1) {
                   System.out.println("Sistema de salud registrado: Fonasa");
@@ -228,7 +238,7 @@ public class Main {
             // Ingreso Dirección
             while (true) {
               System.out.println("Ingrese Dirección (max 70 caracteres): ");
-              String direccion = sc.nextLine();
+              direccion = sc.nextLine();
               if (direccion.length() <= 70 && direccion.matches("^[a-zA-Z0-9 ]+$")) {
                 System.out.println("Dirección registrada: " + direccion);
                 System.out.println("----------------------------------------");
@@ -242,7 +252,7 @@ public class Main {
             // Ingreso Comuna
             while (true) {
               System.out.println("Ingrese Comuna (max 50 caracteres): ");
-              String comuna = sc.nextLine();
+              comuna = sc.nextLine();
               if (comuna.length() <= 50 && comuna.matches("^[a-zA-Z0-9 ]+$")) {
                 System.out.println("Comuna registrada: " + comuna);
                 System.out.println("----------------------------------------");
@@ -252,6 +262,15 @@ public class Main {
                     .println("La comuna tiene un máximo de 50 caracteres y puede contener letras, números y espacios");
               }
             }
+
+            String runUsuario = "";
+            // Llamar método de guardar cliente
+            Cliente cliente = new Cliente(nombreUsuario, fechaUsuario, runUsuario,
+                sistemaSalud, rutClienteStr, nombreCliente, apellidoCliente, telefonoCliente, afp,
+                sistemaSalud, direccion, comuna);
+            contenedor.almacenarCliente(cliente);
+            System.out.println("Cliente registrado con éxito.");
+
           } else if (opcion == 2) {
             // Guardar un profesional
             System.out.println(GREEN_BOLD + """
@@ -526,9 +545,7 @@ public class Main {
 
           try {
 
-            int runInt = Integer.parseInt(runSinPuntos);
-
-            contenedor.eliminarUsuario(runInt);
+            contenedor.eliminarUsuario(runSinPuntos);
 
             System.out.println(
                 GREEN_BOLD + "El usuario con RUT " + eliminarRut + " ha sido eliminado correctamente." + RESET_COLOR);
