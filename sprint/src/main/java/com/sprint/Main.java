@@ -371,6 +371,14 @@ public class Main {
           break;
 
         case 4:
+          // Definición de variables
+          String rutClienteCapacitacion;
+          String diaCapacitacion;
+          String horaCapacitacion = "";
+          String lugarCapacitacion = "";
+          String duracionCapacitacion = "";
+          int cantidadAsistentesCapacitacion = 0;
+
           // Guardar Capacitacion
           System.out.println(GREEN_BOLD + """
 
@@ -389,7 +397,7 @@ public class Main {
           // Registrar rut del cliente de la capacitacion
           while (true) {
             System.out.println("Ingrese RUT Cliente Capacitación: ");
-            String rutClienteCapacitacion = sc.nextLine().replace(".", "").replace("-", "");
+            rutClienteCapacitacion = sc.nextLine().replace(".", "").replace("-", "");
 
             // Validación del RUT
             if (rutClienteCapacitacion.matches("^[0-9]+$")) { // Solo números
@@ -414,7 +422,7 @@ public class Main {
           // Ingreso del día de la capacitación
           while (true) {
             System.out.println("Ingrese día de capacitación (Lunes a Domingo): ");
-            String diaCapacitacion = sc.nextLine();
+            diaCapacitacion = sc.nextLine();
             if (diaCapacitacion.matches("(?i)^(lunes|martes|mi[ée]rcoles|jueves|viernes|s[áa]bado|domingo)$")) {
               System.out.println("Día registrado: " + diaCapacitacion);
               System.out.println("----------------------------------------");
@@ -427,7 +435,7 @@ public class Main {
           // Ingreso de la hora de la capacitación
           while (true) {
             System.out.println("Ingrese una hora: (hh:mm)");
-            String horaCapacitacion = sc.nextLine();
+            horaCapacitacion = sc.nextLine();
 
             if (horaCapacitacion.matches(regexHora)) {
               System.out.println("Hora registrada: " + horaCapacitacion);
@@ -441,7 +449,7 @@ public class Main {
           // Ingreso del lugar de la capacitación
           while (true) {
             System.out.println("Ingrese el lugar de la capacitación (min 10 - max 50 caracteres):");
-            String lugarCapacitacion = sc.nextLine();
+            lugarCapacitacion = sc.nextLine();
 
             if (lugarCapacitacion.length() >= 10 && lugarCapacitacion.length() <= 50
                 && lugarCapacitacion.matches("^[a-zA-Z0-9 ]+$")) {
@@ -457,7 +465,7 @@ public class Main {
           // Duración de la capacitación
           while (true) {
             System.out.println("Ingrese la duración de la capacitación (en horas o minutos):");
-            String duracionCapacitacion = sc.nextLine();
+            duracionCapacitacion = sc.nextLine();
             if (duracionCapacitacion.matches("^[0-9]+(h|m)?$")) {
               // Verifica que sea un número seguido opcionalmente
               // por 'h' o 'm'
@@ -474,7 +482,7 @@ public class Main {
             System.out.println("Ingrese la cantidad de asistentes:");
 
             try {
-              int cantidadAsistentesCapacitacion = sc.nextInt();
+              cantidadAsistentesCapacitacion = sc.nextInt();
               sc.nextLine(); // Consume la nueva línea restante
               if (cantidadAsistentesCapacitacion > 0 && cantidadAsistentesCapacitacion < 1000) {
                 System.out.println("Cantidad de asistentes registrada: " + cantidadAsistentesCapacitacion);
@@ -488,6 +496,12 @@ public class Main {
               sc.next(); // Limpiar el buffer del scanner
             }
           }
+
+          Capacitacion capacitacion = new Capacitacion(identificadorCapacitacion,
+              rutClienteCapacitacion, diaCapacitacion, horaCapacitacion,
+              lugarCapacitacion, duracionCapacitacion, cantidadAsistentesCapacitacion);
+          contenedor.almacenarCapacitacion(capacitacion);
+          System.out.println("Capacitación registrada con éxito.");
           break;
 
         case 5:
