@@ -19,10 +19,7 @@
 6. [¿Cómo Contribuir?](#cómo-contribuir)
 7. [¿Cómo Ejecutar los Proyectos Locales?](#cómo-ejecutar-los-proyectos-locales)
 
-<h2>
-  <img src="Screenshot_1.png" alt="Logo2" align="left">
-  Proyectos y Ejercicios
-</h2>
+<img src="Screenshot_1.png" alt="Logo"  align="left"> ## Proyectos y Ejercicios
 
 ### Proyecto 1: [Nombre del Proyecto]
 
