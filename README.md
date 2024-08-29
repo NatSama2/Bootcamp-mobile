@@ -19,6 +19,7 @@
 6. [¿Cómo Contribuir?](#cómo-contribuir)
 7. [¿Cómo Ejecutar los Proyectos Locales?](#cómo-ejecutar-los-proyectos-locales)
    <br>
+   <br>
 
 <img src="android_1.png" alt="Logo"  align="left">
 
@@ -35,6 +36,7 @@
 - **Demo**: [Enlace a la demo del proyecto, si aplica]
 
 ...
+<br>
 <br>
 
 <img src="android_2.png" alt="Logo"  align="left">
@@ -56,6 +58,7 @@ Este bootcamp es parte del programa Talento Digital para Chile y se dicta en mod
 7. Desarrollo de Portafolio de un Producto Digital - 18 horas
 8. Desarrollo de Empleabilidad en la Industria Digital - 18 horas
    <br>
+   <br>
 
 <img src="android_3.png" alt="Logo"  align="left">
 
@@ -68,6 +71,7 @@ Este bootcamp es parte del programa Talento Digital para Chile y se dicta en mod
 - Desarrollo de aplicaciones empresariales Android
 - Creación de un portafolio de producto digital
   <br>
+  <br>
 
 <img src="android_4.png" alt="Logo"  align="left">
 
@@ -77,6 +81,7 @@ Este bootcamp es parte del programa Talento Digital para Chile y se dicta en mod
 - Aquellos que desean aprender Java y Kotlin en un entorno práctico
 - Quienes buscan mejorar sus habilidades en desarrollo de software móvil
   <br>
+  <br>
 
 <img src="android_5.png" alt="Logo"  align="left">
 
@@ -85,6 +90,7 @@ Este bootcamp es parte del programa Talento Digital para Chile y se dicta en mod
 - [Documentación oficial de Android](https://developer.android.com/docs)
 - [Curso de Kotlin en Udemy](https://www.udemy.com/course/kotlin/)
 - [Guía de Estilo para Android](https://developer.android.com/kotlin/style-guide)
+  <br>
   <br>
 
 <img src="android_6.png" alt="Logo"  align="left">
@@ -96,6 +102,7 @@ Este bootcamp es parte del programa Talento Digital para Chile y se dicta en mod
 1. Clonando el repositorio y creando tus propias ramas para trabajar en nuevas características o resolver problemas.
 2. Abriendo problemas para sugerir nuevas ideas o reportar errores.
 3. Mejorando la documentación existente.
+   <br>
    <br>
 
 <img src="android_7.png" alt="Logo"  align="left">
