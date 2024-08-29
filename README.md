@@ -21,7 +21,7 @@
    <br>
    <br>
 
-<img src="android_1.png" alt="Logo"  align="left">
+<img src="images/android_1.png" alt="Logo"  align="left">
 
 ## Proyectos y Ejercicios
 
@@ -39,7 +39,7 @@
 <br>
 <br>
 
-<img src="android_2.png" alt="Logo"  align="left">
+<img src="images/android_2.png" alt="Logo"  align="left">
 
 ## Sobre el Bootcamp
 
@@ -60,7 +60,7 @@ Este bootcamp es parte del programa Talento Digital para Chile y se dicta en mod
    <br>
    <br>
 
-<img src="android_3.png" alt="Logo"  align="left">
+<img src="images/android_3.png" alt="Logo"  align="left">
 
 ## Lo que se Aprendera
 
@@ -73,7 +73,7 @@ Este bootcamp es parte del programa Talento Digital para Chile y se dicta en mod
   <br>
   <br>
 
-<img src="android_4.png" alt="Logo"  align="left">
+<img src="images/android_4.png" alt="Logo"  align="left">
 
 ## ¿Para Quién es Este Bootcamp?
 
@@ -83,7 +83,7 @@ Este bootcamp es parte del programa Talento Digital para Chile y se dicta en mod
   <br>
   <br>
 
-<img src="android_5.png" alt="Logo"  align="left">
+<img src="images/android_5.png" alt="Logo"  align="left">
 
 ## Recursos Útiles
 
@@ -93,7 +93,7 @@ Este bootcamp es parte del programa Talento Digital para Chile y se dicta en mod
   <br>
   <br>
 
-<img src="android_6.png" alt="Logo"  align="left">
+<img src="images/android_6.png" alt="Logo"  align="left">
 
 ## ¿Cómo Contribuir?
 
@@ -105,7 +105,7 @@ Este bootcamp es parte del programa Talento Digital para Chile y se dicta en mod
    <br>
    <br>
 
-<img src="android_7.png" alt="Logo"  align="left">
+<img src="images/android_7.png" alt="Logo"  align="left">
 
 ## ¿Cómo Ejecutar los Proyectos Locales?
 
