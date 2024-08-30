@@ -5,15 +5,71 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_gravity="center"
     tools:context=".MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#8FAAEAF2"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="251dp">
 
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            android:background="#2196F3"
+            android:text="Saludo app"
+            android:textColor="#FFFEFE"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            android:layout_marginBottom="30dp"
+            android:text="Escribe tu Nombre"
+            android:textAlignment="center"
+            android:textSize="24sp" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:boxBackgroundMode="outline"
+            app:boxStrokeColor="#E72525"
+            app:boxStrokeWidth="2dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="380dp"
+                android:layout_height="wrap_content"
+                android:background="#FFFFFF"
+                android:hint="Giselle"
+                android:singleLine="true"
+                android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                tools:layout_gravity="center"
+                tools:singleLine="true" />
+
+            <Button
+                android:id="@+id/Button"
+                android:layout_width="240dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="50dp"
+                android:text="Saludo" />
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="260dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="200dp"
+                android:background="#850B0B"
+                android:text="Hola Giselle"
+                android:textColor="#FFFFFF"
+                tools:textSize="24dp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
