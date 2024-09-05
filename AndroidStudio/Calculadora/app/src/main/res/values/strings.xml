@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">C19.2</string>
+    <string name="sumar">Sumar</string>
+    <string name="restar">Restar</string>
+    <string name="multiplicar">Multiplicar</string>
+    <string name="dividir">Dividir</string>
+    <string name="result_label">Resultado:</string>
+    <string name="enter_number_1">Ingresa el número 1</string>
+    <string name="enter_number_2">Ingresa el número 2</string>
+    <string name="calculator_title">Calculadora</string>
 </resources>

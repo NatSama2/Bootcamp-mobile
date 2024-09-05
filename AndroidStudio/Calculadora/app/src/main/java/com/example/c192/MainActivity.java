@@ -21,9 +21,14 @@ public class MainActivity extends AppCompatActivity {
         EditText txt1 = findViewById(R.id.num1);
         EditText txt2 = findViewById(R.id.num2);
         TextView txt3 = findViewById(R.id.resul);
-        Button btn = findViewById(R.id.sumar);
 
-        btn.setOnClickListener(new View.OnClickListener() {
+        Button btnSumar = findViewById(R.id.sumar);
+        Button btnRestar = findViewById(R.id.restar);
+        Button btnMultiplicar = findViewById(R.id.multiplicar);
+        Button btnDividir = findViewById(R.id.dividir);
+
+        // Función común para manejar operaciones
+        View.OnClickListener operar = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String num1 = txt1.getText().toString().trim();
@@ -37,10 +42,29 @@ public class MainActivity extends AppCompatActivity {
                 try {
                     int numero1 = Integer.parseInt(num1);
                     int numero2 = Integer.parseInt(num2);
+                    int resultado = 0;
 
-                    int resul = numero1 + numero2;
-                    txt3.setText("El resultado es: " + resul);
+                    switch (view.getId()) {
+                        case R.id.sumar:
+                            resultado = numero1 + numero2;
+                            break;
+                        case R.id.restar:
+                            resultado = numero1 - numero2;
+                            break;
+                        case R.id.multiplicar:
+                            resultado = numero1 * numero2;
+                            break;
+                        case R.id.dividir:
+                            if (numero2 != 0) {
+                                resultado = numero1 / numero2;
+                            } else {
+                                Toast.makeText(getApplicationContext(), "No se puede dividir por cero", Toast.LENGTH_LONG).show();
+                                return;
+                            }
+                            break;
+                    }
 
+                    txt3.setText("El resultado es: " + resultado);
                     // Limpiar los campos después de la operación
                     txt1.setText("");
                     txt2.setText("");
@@ -49,6 +73,12 @@ public class MainActivity extends AppCompatActivity {
                     Log.e("Error", "Error al convertir texto a número", e);
                 }
             }
-        });
+        };
+
+        // Asignar el mismo evento a todos los botones
+        btnSumar.setOnClickListener(operar);
+        btnRestar.setOnClickListener(operar);
+        btnMultiplicar.setOnClickListener(operar);
+        btnDividir.setOnClickListener(operar);
     }
 }
