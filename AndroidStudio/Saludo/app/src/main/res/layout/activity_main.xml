@@ -8,13 +8,12 @@
     android:layout_gravity="center"
     tools:context=".MainActivity">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#8FAAEAF2"
-        android:orientation="vertical"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="251dp">
+        android:background="@drawable/fonfo2"
+        tools:layout_editor_absoluteX="106dp"
+        tools:layout_editor_absoluteY="16dp">
 
         <TextView
             android:id="@+id/textView"
@@ -25,51 +24,69 @@
             android:textColor="#FFFEFE"
             android:textSize="24sp" />
 
+        <EditText
+            android:id="@+id/editTextText"
+            android:layout_width="315dp"
+            android:layout_height="50dp"
+            android:ems="10"
+            android:inputType="text"
+            android:text="Name"
+            android:textColor="#FFFFFF"
+            tools:layout_editor_absoluteX="40dp"
+            tools:layout_editor_absoluteY="226dp" />
+
+        <EditText
+            android:id="@+id/editTextText"
+            android:layout_width="315dp"
+            android:layout_height="50dp"
+            android:ems="10"
+            android:inputType="text"
+            android:text="Email"
+            android:textColor="#FFFFFF"
+            tools:layout_editor_absoluteX="40dp"
+            tools:layout_editor_absoluteY="373dp" />
+
+        <EditText
+            android:id="@+id/editTextText"
+            android:layout_width="315dp"
+            android:layout_height="50dp"
+            android:ems="@integer/material_motion_duration_long_2"
+            android:inputType="text"
+            android:text="Last Name"
+            android:textColor="#FFFFFF"
+            tools:layout_editor_absoluteX="40dp"
+            tools:layout_editor_absoluteY="297dp" />
+
+        <EditText
+            android:id="@+id/editTextTextPassword"
+            android:layout_width="311dp"
+            android:layout_height="50dp"
+            android:ems="10"
+            android:inputType="textPassword"
+            android:text="Password"
+            android:textColor="#FFFFFF"
+            tools:layout_editor_absoluteX="40dp"
+            tools:layout_editor_absoluteY="451dp" />
+
         <TextView
             android:id="@+id/textView"
             android:layout_width="match_parent"
             android:layout_height="42dp"
-            android:layout_marginBottom="30dp"
-            android:text="Escribe tu Nombre"
+            android:text="Inicio Sesión"
             android:textAlignment="center"
-            android:textSize="24sp" />
+            android:textColor="#FFFFFF"
+            android:textSize="26sp"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="124dp" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:boxBackgroundMode="outline"
-            app:boxStrokeColor="#E72525"
-            app:boxStrokeWidth="2dp">
+        <Button
+            android:id="@+id/Button"
+            android:layout_width="240dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="Iniciar"
+            tools:layout_editor_absoluteX="85dp"
+            tools:layout_editor_absoluteY="524dp" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="380dp"
-                android:layout_height="wrap_content"
-                android:background="#FFFFFF"
-                android:hint="Giselle"
-                android:singleLine="true"
-                android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-                tools:layout_gravity="center"
-                tools:singleLine="true" />
-
-            <Button
-                android:id="@+id/Button"
-                android:layout_width="240dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="50dp"
-                android:text="Saludo" />
-
-            <TextView
-                android:id="@+id/textView3"
-                android:layout_width="260dp"
-                android:layout_height="40dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="200dp"
-                android:background="#850B0B"
-                android:text="Hola Giselle"
-                android:textColor="#FFFFFF"
-                tools:textSize="24dp" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
