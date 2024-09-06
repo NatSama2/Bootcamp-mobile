@@ -55,47 +55,68 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="16dp" />
 
-    <Button
-        android:id="@+id/sumar"
-        android:layout_width="100dp"
+    <!-- Contenedor para los botones de operación -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/buttonsContainer"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="+"
-        android:textSize="32sp"
         app:layout_constraintTop_toBottomOf="@+id/resul"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_margin="8dp"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp">
 
+        <Button
+            android:id="@+id/sumar"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="+"
+            android:textSize="32sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_margin="8dp"/>
+
+        <Button
+            android:id="@+id/restar"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="-"
+            android:textSize="32sp"
+            app:layout_constraintStart_toEndOf="@+id/sumar"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_margin="8dp"/>
+
+        <Button
+            android:id="@+id/multiplicar"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="*"
+            android:textSize="32sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/sumar"
+            android:layout_margin="8dp"/>
+
+        <Button
+            android:id="@+id/dividir"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="/"
+            android:textSize="32sp"
+            app:layout_constraintStart_toEndOf="@+id/multiplicar"
+            app:layout_constraintTop_toBottomOf="@+id/restar"
+            android:layout_margin="8dp"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- Botón para salir -->
     <Button
-        android:id="@+id/restar"
-        android:layout_width="100dp"
+        android:id="@+id/salir"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="-"
-        android:textSize="32sp"
-        app:layout_constraintTop_toBottomOf="@+id/resul"
-        app:layout_constraintStart_toEndOf="@+id/sumar"
-        android:layout_margin="8dp"/>
-
-    <Button
-        android:id="@+id/multiplicar"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:text="*"
-        android:textSize="32sp"
-        app:layout_constraintTop_toBottomOf="@+id/resul"
-        app:layout_constraintStart_toEndOf="@+id/restar"
-        android:layout_margin="8dp"/>
-
-    <Button
-        android:id="@+id/dividir"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="84dp"
-        android:text="/"
-        android:textSize="32sp"
-        app:layout_constraintStart_toEndOf="@+id/multiplicar"
-        app:layout_constraintTop_toBottomOf="@+id/resul" />
-
+        android:text="Salir"
+        android:textSize="24sp"
+        app:layout_constraintTop_toBottomOf="@+id/buttonsContainer"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_margin="16dp"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

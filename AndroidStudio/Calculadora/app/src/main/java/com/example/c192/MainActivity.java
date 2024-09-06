@@ -7,7 +7,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
@@ -26,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
         Button btnRestar = findViewById(R.id.restar);
         Button btnMultiplicar = findViewById(R.id.multiplicar);
         Button btnDividir = findViewById(R.id.dividir);
+        Button btnSalir = findViewById(R.id.salir);  // Botón de salir
 
         // Función común para manejar operaciones
         View.OnClickListener operar = new View.OnClickListener() {
@@ -44,24 +44,19 @@ public class MainActivity extends AppCompatActivity {
                     int numero2 = Integer.parseInt(num2);
                     int resultado = 0;
 
-                    switch (view.getId()) {
-                        case R.id.sumar:
-                            resultado = numero1 + numero2;
-                            break;
-                        case R.id.restar:
-                            resultado = numero1 - numero2;
-                            break;
-                        case R.id.multiplicar:
-                            resultado = numero1 * numero2;
-                            break;
-                        case R.id.dividir:
-                            if (numero2 != 0) {
-                                resultado = numero1 / numero2;
-                            } else {
-                                Toast.makeText(getApplicationContext(), "No se puede dividir por cero", Toast.LENGTH_LONG).show();
-                                return;
-                            }
-                            break;
+                    if (view.getId() == R.id.sumar) {
+                        resultado = numero1 + numero2;
+                    } else if (view.getId() == R.id.restar) {
+                        resultado = numero1 - numero2;
+                    } else if (view.getId() == R.id.multiplicar) {
+                        resultado = numero1 * numero2;
+                    } else if (view.getId() == R.id.dividir) {
+                        if (numero2 != 0) {
+                            resultado = numero1 / numero2;
+                        } else {
+                            Toast.makeText(getApplicationContext(), "No se puede dividir por cero", Toast.LENGTH_LONG).show();
+                            return;
+                        }
                     }
 
                     txt3.setText("El resultado es: " + resultado);
@@ -80,5 +75,13 @@ public class MainActivity extends AppCompatActivity {
         btnRestar.setOnClickListener(operar);
         btnMultiplicar.setOnClickListener(operar);
         btnDividir.setOnClickListener(operar);
+
+        // Botón para salir de la aplicación
+        btnSalir.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finishAffinity();  // Cierra la aplicación
+            }
+        });
     }
 }
