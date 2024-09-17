@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Individual11</string>
+        <string name="si_lo_conozco">¿Si lo conozco?</string>
+        <string name="si">Sí</string>
+        <string name="no">No</string>
+        <string name="pikachu_image">Imagen de Pikachu</string>
+    </resources>
