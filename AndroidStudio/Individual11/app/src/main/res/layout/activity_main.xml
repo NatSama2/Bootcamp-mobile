@@ -5,14 +5,32 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#F57C00"
     tools:context=".MainActivity">
 
+    <!-- Contenedor para el fragmento de los Radio Buttons -->
+
+    <!-- Contenedor para el fragmento de la imagen (Pikachu) -->
     <FrameLayout
-        android:id="@+id/fragment_container"
-        android:layout_width="409dp"
-        android:layout_height="586dp"
-        android:layout_weight="1"
-        tools:layout_editor_absoluteX="2dp" />
+        android:id="@+id/fragment_radio_container"
+        android:layout_width="361dp"
+        android:layout_height="103dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@id/fragment_image_container"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.6"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <FrameLayout
+        android:id="@+id/fragment_image_container"
+        android:layout_width="410dp"
+        android:layout_height="416dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toTopOf="@id/btnShowFragment"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/fragment_radio_container" />
 
     <Button
         android:id="@+id/btnShowFragment"

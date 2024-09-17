@@ -21,13 +21,15 @@ public class MainActivity extends AppCompatActivity {
         btnShowFragment = findViewById(R.id.btnShowFragment);
         btnCloseApp = findViewById(R.id.btnCloseApp);
 
-           btnShowFragment.setOnClickListener(new View.OnClickListener() {
+        // Botón para mostrar los dos fragmentos
+        btnShowFragment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                loadFragment(new RadioButtonsFragment());
+                loadFragments();
             }
         });
 
+        // Botón para cerrar la aplicación
         btnCloseApp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -36,10 +38,17 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void loadFragment(Fragment fragment) {
+    // Método para cargar los dos fragmentos
+    private void loadFragments() {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.fragment_container, fragment);
+
+        // Cargar fragmento de Radio Buttons en el primer contenedor
+        fragmentTransaction.replace(R.id.fragment_radio_container, new RadioButtonsFragment());
+
+        // Cargar fragmento de Imagen (Pikachu) en el segundo contenedor
+        fragmentTransaction.replace(R.id.fragment_image_container, new ImageFragment());
+
         fragmentTransaction.commit();
     }
 }
