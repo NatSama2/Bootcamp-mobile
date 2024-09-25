@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/preguntaFragment">
+
+    <fragment
+        android:id="@+id/preguntaFragment"
+        android:name="com.example.triviaapp2.PreguntaFragment"
+        android:label="PreguntaFragment">
+        <action
+            android:id="@+id/action_preguntaFragment_to_finalFragment"
+            app:destination="@id/finalFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/finalFragment"
+        android:name="com.example.triviaapp2.FinalFragment"
+        android:label="FinalFragment" />
+
+    </navigation>
