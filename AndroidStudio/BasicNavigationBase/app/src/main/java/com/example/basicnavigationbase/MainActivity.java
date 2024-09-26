@@ -37,10 +37,23 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = host.getNavController();
 
         //TODO STEP 11  - Create an AppBarConfiguration with the correct top-level destinations
-        appBarConfiguration =  new AppBarConfiguration.Builder(navController.getGraph()).build();
+        //appBarConfiguration =  new AppBarConfiguration.Builder(navController.getGraph()).build();
 
         // You should also remove the old appBarConfiguration setup above
+        DrawerLayout drawerLayout = findViewById(R.id.drawer_layout);
 
+        Set<Integer> topLevelDestinations = new HashSet<>();
+        topLevelDestinations.add(R.id.home_dest);
+        //topLevelDestinations.add(R.id.settings_dest);
+
+        if (null != drawerLayout) {
+            appBarConfiguration = new AppBarConfiguration.Builder(topLevelDestinations)
+                    .setDrawerLayout(drawerLayout)
+                    .build();
+        }
+        else {
+            appBarConfiguration = new AppBarConfiguration.Builder(navController.getGraph()).build();
+        }
         //END STEP 11
 
         setupActionBar(navController, appBarConfiguration);
@@ -52,11 +65,24 @@ public class MainActivity extends AppCompatActivity {
 
     private void setupBottomNavMenu(NavController navController) {
         //TODO STEP 9 - Use NavigationUI to set up Bottom Nav
+        //ATENCION - PARA QUE ESTO FUNCIONE DE ESTA MANERA, LA VERSION DE
+        //LA DEPENDENCIA navigation.ui: debe ser la 2.3.5
+        //Versiones más modernas utilizan multiples back stacks y esto cambia.
+        BottomNavigationView bottomNav = findViewById(R.id.bottom_nav_view);
+        if (null != bottomNav) {
+            NavigationUI.setupWithNavController(bottomNav,navController);
+        }
         //END STEP 9
     }
 
     private void setupNavigationMenu(NavController navController) {
         //TODO STEP 10 - Use NavigationUI to set up a Navigation View
+        // In split screen mode, you can drag this view out from the left
+        // This does NOT modify the actionbar
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        if (navigationView != null){
+            NavigationUI.setupWithNavController(navigationView,navController);
+        }
         //END STEP 10
     }
 
@@ -66,6 +92,7 @@ public class MainActivity extends AppCompatActivity {
         // This allows NavigationUI to decide what label to show in the action bar
         // By using appBarConfig, it will also determine whether to
         // show the up arrow or drawer menu icon
+        NavigationUI.setupActionBarWithNavController(this, navController,appBarConfiguration);
         //END STEP 12
     }
 
@@ -84,16 +111,27 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        return super.onOptionsItemSelected(item);
+        //return super.onOptionsItemSelected(item);
         //TODO STEP 8 - Have Navigation UI Handle the item selection -
         // make sure to comment or delete the old return statement above
         // Have the NavigationUI look for an action or destination matching the menu
         // item id and navigate there if found.
         // Otherwise, bubble up to the parent.
+        if (NavigationUI.onNavDestinationSelected(item, Navigation.findNavController(this, R.id.my_nav_host_fragment)))
+            return true;
+        else {
+            return super.onOptionsItemSelected(item);
+        }
         //END STEP 8
     }
 
     //TODO STEP 12  - Have NavigationUI handle up behavior in the ActionBar
+    @Override
+    public boolean onSupportNavigateUp() {
+        // Allows NavigationUI to support proper up navigation or the drawer layout
+        // drawer menu, depending on the situation
+        return NavigationUI.navigateUp(Navigation.findNavController(this, R.id.my_nav_host_fragment), appBarConfiguration);
+    }
     //END STEP 12
 
 }
