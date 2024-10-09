@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Individual5 M5</string>
+
+        <string-array name="health_system_options">
+            <item>Fonasa</item>
+            <item>Isapre</item>
+            <item>Particular</item>
+        </string-array>
+</resources>
