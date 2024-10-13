@@ -2,6 +2,8 @@ package com.example.sprintmodulo5
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
@@ -13,14 +15,29 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val shoeList = getShoeList()
-
+        // Inicializar el RecyclerView
         val recyclerView: RecyclerView = findViewById(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this)
+
+        // Obtener la lista de zapatos
+        val shoeList = getShoeList()
+
+        // Inicializar el adaptador con la lista y la acción de clic
         shoeAdapter = ShoeAdapter(shoeList) { shoe ->
-            // Aquí puedes implementar la navegación al detalle del zapato
+            openShoeDetailFragment(shoe)
         }
         recyclerView.adapter = shoeAdapter
+    }
+
+    // Función que navega al fragmento de detalle del zapato
+    private fun openShoeDetailFragment(shoe: Shoe) {
+        val fragment = ShoeDetailFragment.newInstance(shoe)
+
+        // Reemplazar el fragmento actual con el fragmento de detalles
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.fragmentContainer, fragment)  // Reemplaza el contenedor con el nuevo fragmento
+            .addToBackStack(null)  // Agregar a la pila de retroceso para que el usuario pueda regresar
+            .commit()
     }
 
     // Lista de productos (zapatos)

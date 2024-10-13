@@ -3,37 +3,43 @@ package com.example.sprintmodulo5
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
+import android.widget.Button
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.sprintmodulo5.databinding.FragmentShoeListBinding
 
 class ShoeAdapter(
-    private val shoeList: List<Shoe>,
-    private val onItemClick: (Shoe) -> Unit
+    private val shoes: List<Shoe>,
+    private val onClick: (Shoe) -> Unit
 ) : RecyclerView.Adapter<ShoeAdapter.ShoeViewHolder>() {
 
-    inner class ShoeViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val shoeName: TextView = view.findViewById(R.id.shoeName)
-        val shoePrice: TextView = view.findViewById(R.id.shoePrice)
-        val shoeImage: ImageView = view.findViewById(R.id.shoeImage)
-
-        fun bind(shoe: Shoe) {
-            shoeName.text = shoe.name
-            shoePrice.text = "$${shoe.price}"
-            Glide.with(itemView.context).load(shoe.imageUrl).into(shoeImage)
-            itemView.setOnClickListener { onItemClick(shoe) }
-        }
-    }
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ShoeViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.fragment_shoe_list, parent, false)
-        return ShoeViewHolder(view)
+        val binding = FragmentShoeListBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return ShoeViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: ShoeViewHolder, position: Int) {
-        holder.bind(shoeList[position])
+        val shoe = shoes[position]
+        holder.bind(shoe)
+
+        // Manejar clic en el botón "VER"
+        holder.itemView.findViewById<Button>(R.id.viewButton).setOnClickListener {
+            onClick(shoe)
+        }
     }
 
-    override fun getItemCount(): Int = shoeList.size
+    override fun getItemCount() = shoes.size
+
+    inner class ShoeViewHolder(private val binding: FragmentShoeListBinding) : RecyclerView.ViewHolder(binding.root) {
+        fun bind(shoe: Shoe) {
+            // Aquí usas Glide para cargar la imagen desde la URL
+            Glide.with(binding.root.context)
+                .load(shoe.imageUrl) // URL de la imagen
+                .into(binding.shoeImage) // El ImageView donde se cargará la imagen
+
+            // Establecer el nombre y el precio del zapato
+            binding.shoeName.text = shoe.name
+            binding.shoePrice.text = "$${shoe.price}"
+        }
+    }
 }
