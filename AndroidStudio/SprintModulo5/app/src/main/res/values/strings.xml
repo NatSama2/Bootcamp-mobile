@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">SprintModulo5</string>
     <string name="shoe_list_fragment_label">Shoe List</string>
-    <string name="shoe_detail_fragment_label">Shoe Detail</string>
+    <string name="shoe_detail_fragment_label">Detalle del Zapato</string>
+    <string name="cart_fragment_label">Carrito</string>
     <string name="action_settings">Settings</string>
-    <string name="next">Next</string>
-    <string name="previous">Previous</string>
+
 </resources>
