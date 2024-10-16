@@ -20,13 +20,13 @@ class ShoeListFragment : Fragment() {
         // Inicializar ViewBinding
         _binding = FragmentShoeListBinding.inflate(inflater, container, false)
 
-        // Inicializar el RecyclerView
+        // Inicializar RecyclerView
         binding.recyclerView.layoutManager = LinearLayoutManager(context)
 
         // Obtener la lista de zapatos
         val shoeList = getShoeList()
 
-        // Inicializar el adaptador con la lista y la acción de clic
+
         shoeAdapter = ShoeAdapter(shoeList) { shoe ->
             openShoeDetailFragment(shoe)
         }
@@ -37,17 +37,17 @@ class ShoeListFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        _binding = null // Limpiar el binding para evitar fugas de memoria
+        _binding = null // Limpiar el binding
     }
 
     // Función que navega al fragmento de detalle del zapato
     private fun openShoeDetailFragment(shoe: Shoe) {
-        // Navegar pasando el objeto shoe completo
+        // Navegar
         val action = ShoeListFragmentDirections.actionShoeListFragmentToShoeDetailFragment(shoe)
         findNavController().navigate(action)
     }
 
-    // Lista de productos (zapatos)
+    // Lista de zapatillas
     private fun getShoeList(): List<Shoe> {
         return listOf(
             Shoe("Zapatilla Pikachu", "https://nyplovers.cl/wp-content/uploads/2023/04/Zapatillas-pikachu-pokemon-anime-nyplovers-naruto-dragon-ball-one-piece-demon-slayer-kimetsu-no-yaiba-otaku-02.png", 99.99),

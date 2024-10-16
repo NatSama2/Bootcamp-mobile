@@ -9,6 +9,7 @@ import android.widget.ImageView
 import android.widget.Button
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 
 class ShoeDetailFragment : Fragment() {
@@ -20,7 +21,7 @@ class ShoeDetailFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_shoe_detail, container, false)
 
-        // Recuperar el objeto shoe del Bundle usando el método correcto
+
         shoe = arguments?.getParcelable("shoe") ?: Shoe("", "", 0.0)
 
         val shoeName: TextView = view.findViewById(R.id.shoeNameTextView)
@@ -28,15 +29,18 @@ class ShoeDetailFragment : Fragment() {
         val shoeImage: ImageView = view.findViewById(R.id.shoeImageView)
         val addToCartButton: Button = view.findViewById(R.id.addToCartButton)
 
-        // Asignar los valores del objeto shoe a las vistas
+        // Asignar valores
         shoeName.text = shoe.name
         shoePrice.text = "$${shoe.price}"
         Glide.with(requireContext()).load(shoe.imageUrl).into(shoeImage)
 
-        // Lógica para agregar al carrito
+
         addToCartButton.setOnClickListener {
             Cart.addItem(shoe)
             Toast.makeText(requireContext(), "${shoe.name} agregado al carrito", Toast.LENGTH_SHORT).show()
+
+            // Navegar al CartFragment
+            findNavController().navigate(R.id.action_shoeDetailFragment_to_cartFragment)
         }
 
         return view

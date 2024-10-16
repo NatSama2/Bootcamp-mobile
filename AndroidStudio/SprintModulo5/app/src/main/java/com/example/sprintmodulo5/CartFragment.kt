@@ -29,12 +29,12 @@ class CartFragment : Fragment() {
         val recyclerView: RecyclerView = view.findViewById(R.id.recyclerViewCart)
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
-        // Inicializar el adaptador con la lista de zapatos en el carrito
+
         cartAdapter = CartAdapter(cartItems)
         recyclerView.adapter = cartAdapter
     }
 
-    // Adapter para manejar los elementos del carrito
+
     inner class CartAdapter(private val cartItems: List<Shoe>) : RecyclerView.Adapter<CartAdapter.CartViewHolder>() {
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CartViewHolder {
@@ -60,7 +60,7 @@ class CartFragment : Fragment() {
                     .load(shoe.imageUrl)
                     .into(shoeImage)
 
-                // Establecer el nombre y el precio del zapato
+
                 shoeName.text = shoe.name
                 shoePrice.text = "$${shoe.price}"
             }

@@ -13,7 +13,7 @@ class MainActivity : AppCompatActivity() {
 
         // Configurar el Toolbar como ActionBar
         val toolbar = findViewById<androidx.appcompat.widget.Toolbar>(R.id.toolbar)
-        setSupportActionBar(toolbar)  // Esta línea es importante
+        setSupportActionBar(toolbar)
 
         // Configurar la navegación
         val navHostFragment = supportFragmentManager
