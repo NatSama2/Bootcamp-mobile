@@ -20,7 +20,9 @@ data class Shoe(
         parcel.writeDouble(price)
     }
 
-    override fun describeContents(): Int = 0
+    override fun describeContents(): Int {
+        return 0
+    }
 
     companion object CREATOR : Parcelable.Creator<Shoe> {
         override fun createFromParcel(parcel: Parcel): Shoe {

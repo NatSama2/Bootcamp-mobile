@@ -4,42 +4,44 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.sprintmodulo5.databinding.FragmentShoeListBinding
 
 class ShoeAdapter(
-    private val shoes: List<Shoe>,
-    private val onClick: (Shoe) -> Unit
+    private val shoeList: List<Shoe>,
+    private val onShoeClick: (Shoe) -> Unit
 ) : RecyclerView.Adapter<ShoeAdapter.ShoeViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ShoeViewHolder {
-        val binding = FragmentShoeListBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return ShoeViewHolder(binding)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_shoe, parent, false)
+        return ShoeViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: ShoeViewHolder, position: Int) {
-        val shoe = shoes[position]
-        holder.bind(shoe)
-
-        // Manejar clic en el botón "VER"
-        holder.itemView.findViewById<Button>(R.id.viewButton).setOnClickListener {
-            onClick(shoe)
-        }
+        val shoe = shoeList[position]
+        holder.bind(shoe, onShoeClick)
     }
 
-    override fun getItemCount() = shoes.size
+    override fun getItemCount() = shoeList.size
 
-    inner class ShoeViewHolder(private val binding: FragmentShoeListBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(shoe: Shoe) {
-            // Aquí usas Glide para cargar la imagen desde la URL
-            Glide.with(binding.root.context)
-                .load(shoe.imageUrl) // URL de la imagen
-                .into(binding.shoeImage) // El ImageView donde se cargará la imagen
+    class ShoeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        fun bind(shoe: Shoe, onShoeClick: (Shoe) -> Unit) {
+            val shoeName = itemView.findViewById<TextView>(R.id.shoeName)
+            val shoePrice = itemView.findViewById<TextView>(R.id.shoePrice)
+            val shoeImage = itemView.findViewById<ImageView>(R.id.shoeImage)
+            val viewButton = itemView.findViewById<Button>(R.id.viewButton)
 
-            // Establecer el nombre y el precio del zapato
-            binding.shoeName.text = shoe.name
-            binding.shoePrice.text = "$${shoe.price}"
+            shoeName.text = shoe.name
+            shoePrice.text = "$${shoe.price}"
+            // Carga de imagen desde URL (Usa Glide o Picasso)
+            Glide.with(itemView.context).load(shoe.imageUrl).into(shoeImage)
+
+            viewButton.setOnClickListener {
+                onShoeClick(shoe) // Accion al hacer clic en el botón "VER"
+            }
         }
     }
 }

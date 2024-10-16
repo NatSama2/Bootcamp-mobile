@@ -20,6 +20,7 @@ class ShoeDetailFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_shoe_detail, container, false)
 
+        // Recuperar el objeto shoe del Bundle usando el método correcto
         shoe = arguments?.getParcelable("shoe") ?: Shoe("", "", 0.0)
 
         val shoeName: TextView = view.findViewById(R.id.shoeNameTextView)
@@ -27,6 +28,7 @@ class ShoeDetailFragment : Fragment() {
         val shoeImage: ImageView = view.findViewById(R.id.shoeImageView)
         val addToCartButton: Button = view.findViewById(R.id.addToCartButton)
 
+        // Asignar los valores del objeto shoe a las vistas
         shoeName.text = shoe.name
         shoePrice.text = "$${shoe.price}"
         Glide.with(requireContext()).load(shoe.imageUrl).into(shoeImage)
