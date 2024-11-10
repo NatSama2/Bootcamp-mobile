@@ -9,4 +9,8 @@ class PhoneRepository {
     suspend fun getPhonesFromApi(): List<Phone> {
         return apiService.getPhones()
     }
+
+    suspend fun getPhoneDetailsFromApi(phoneId: Int): Phone? {
+        return apiService.getPhoneDetails(phoneId).body()
+    }
 }

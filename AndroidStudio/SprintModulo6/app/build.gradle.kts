@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    id("androidx.navigation.safeargs.kotlin") // Plugin para Safe Args
     id("kotlin-android")
     id("kotlin-kapt") // Esta línea está bien, es para el procesamiento de anotaciones de Kotlin
 }
@@ -51,6 +52,7 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
 
     // Retrofit
     implementation("com.squareup.retrofit2:retrofit:2.11.0")
