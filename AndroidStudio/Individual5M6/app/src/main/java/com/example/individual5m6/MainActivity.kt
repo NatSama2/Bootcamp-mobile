@@ -2,29 +2,22 @@ package com.example.individual5m6
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.individual5m6.databinding.ActivityMainBinding
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.setupActionBarWithNavController
+import com.example.sprintmodulo6.R
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityMainBinding
-    private lateinit var viewModel: MyViewModel
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        setContentView(R.layout.activity_main)
 
-        viewModel = ViewModelProvider(this).get(MyViewModel::class.java)
+        val navHostFragment = supportFragmentManager
+            .findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+        setupActionBarWithNavController(navHostFragment.navController)
+    }
 
-        binding.recyclerView.layoutManager = LinearLayoutManager(this)
-        val adapter = MyAdapter()
-        binding.recyclerView.adapter = adapter
-
-        viewModel.items.observe(this) { items ->
-            adapter.submitList(items)
-        }
-
-        viewModel.fetchDataFromApi()
+    override fun onSupportNavigateUp(): Boolean {
+        return findNavController(R.id.nav_host_fragment).navigateUp()
     }
 }
