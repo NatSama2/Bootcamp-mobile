@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "2e4be371368bf0125419726f8c8ab83a",
+    "identityHash": "62640a9f40e50e086ebc77eaddb7825b",
     "entities": [
       {
         "tableName": "Horoscope",
@@ -68,7 +68,7 @@
       },
       {
         "tableName": "HoroscopeDetail",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT NOT NULL, `nombre` TEXT NOT NULL, `fechas` TEXT NOT NULL, `elemento` TEXT NOT NULL, `planetaRegente` TEXT NOT NULL, `simbolo` TEXT NOT NULL, `color` TEXT NOT NULL, `logo` TEXT NOT NULL, PRIMARY KEY(`id`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT NOT NULL, `name` TEXT NOT NULL, `dates` TEXT NOT NULL, `element` TEXT, `rulingPlanet` TEXT, `symbol` TEXT, `color` TEXT, `imageUrl` TEXT, PRIMARY KEY(`id`))",
         "fields": [
           {
             "fieldPath": "id",
@@ -78,45 +78,45 @@
           },
           {
             "fieldPath": "name",
-            "columnName": "nombre",
+            "columnName": "name",
             "affinity": "TEXT",
             "notNull": true
           },
           {
             "fieldPath": "dates",
-            "columnName": "fechas",
+            "columnName": "dates",
             "affinity": "TEXT",
             "notNull": true
           },
           {
             "fieldPath": "element",
-            "columnName": "elemento",
+            "columnName": "element",
             "affinity": "TEXT",
-            "notNull": true
+            "notNull": false
           },
           {
             "fieldPath": "rulingPlanet",
-            "columnName": "planetaRegente",
+            "columnName": "rulingPlanet",
             "affinity": "TEXT",
-            "notNull": true
+            "notNull": false
           },
           {
             "fieldPath": "symbol",
-            "columnName": "simbolo",
+            "columnName": "symbol",
             "affinity": "TEXT",
-            "notNull": true
+            "notNull": false
           },
           {
             "fieldPath": "color",
             "columnName": "color",
             "affinity": "TEXT",
-            "notNull": true
+            "notNull": false
           },
           {
             "fieldPath": "imageUrl",
-            "columnName": "logo",
+            "columnName": "imageUrl",
             "affinity": "TEXT",
-            "notNull": true
+            "notNull": false
           }
         ],
         "primaryKey": {
@@ -132,7 +132,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '2e4be371368bf0125419726f8c8ab83a')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '62640a9f40e50e086ebc77eaddb7825b')"
     ]
   }
 }

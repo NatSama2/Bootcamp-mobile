@@ -15,13 +15,26 @@ class HoroscopeDetailFragment : Fragment() {
     private lateinit var binding: FragmentHoroscopeDetailBinding
     private lateinit var viewModel: HoroscopeDetailViewModel
     private var horoscopeId: String? = null
+    private lateinit var repository: HoroscopeRepository
+    private lateinit var apiService: ApiService
+    private lateinit var database: HoroscopeDatabase
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentHoroscopeDetailBinding.inflate(inflater, container, false)
-        viewModel = ViewModelProvider(this).get(HoroscopeDetailViewModel::class.java)
+
+        // Inicializa las dependencias necesarias (apiService, database)
+        apiService = ApiService.create() // Usa el método create de ApiService
+        database = HoroscopeDatabase.getInstance(requireContext()) // Usa getInstance para la base de datos
+
+        // Crea el repository pasando las dependencias
+        repository = HoroscopeRepository(apiService, database)
+
+        // Usa la ViewModelFactory para crear el ViewModel
+        val factory = HoroscopeDetailViewModelFactory(repository)
+        viewModel = ViewModelProvider(this, factory).get(HoroscopeDetailViewModel::class.java)
 
         horoscopeId = arguments?.getString("horoscopeId")
         horoscopeId?.let { viewModel.loadHoroscopeDetail(it) }
@@ -35,7 +48,7 @@ class HoroscopeDetailFragment : Fragment() {
                     .into(binding.horoscopeImage)
 
                 binding.emailButton.setOnClickListener {
-                    sendEmail(detail.name)
+                    sendEmail(detail.name ?: "Nombre desconocido")
                 }
             } else {
                 binding.horoscopeName.text = "Detalles no disponibles"
