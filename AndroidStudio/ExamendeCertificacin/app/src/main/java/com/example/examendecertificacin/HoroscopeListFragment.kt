@@ -23,14 +23,11 @@ class HoroscopeListFragment : Fragment() {
     ): View? {
         binding = FragmentHoroscopeListBinding.inflate(inflater, container, false)
 
-        // Crear instancias de ApiService y HoroscopeDatabase
-        val apiService = ApiService.create() // Retrofit: Crea la instancia de ApiService
-        val database = HoroscopeDatabase.getInstance(requireContext()) // Room: Crea la instancia de HoroscopeDatabase
+        val apiService = ApiService.create()
+        val database = HoroscopeDatabase.getInstance(requireContext())
 
-        // Instanciar el repositorio con los servicios y la base de datos
         val repository = HoroscopeRepository(apiService, database)
 
-        // Crear una instancia del ViewModel pasando el repositorio
         viewModel = ViewModelProvider(
             this,
             object : ViewModelProvider.Factory {
@@ -40,16 +37,14 @@ class HoroscopeListFragment : Fragment() {
             }
         ).get(HoroscopeViewModel::class.java)
 
-        // Configuración del RecyclerView
         binding.horoscopeRecyclerView.layoutManager = LinearLayoutManager(context)
         val adapter = HoroscopeAdapter { horoscopeId ->
-            // Navegar al detalle del horóscopo usando Navigation Component
+
             val action = HoroscopeListFragmentDirections.actionHoroscopeListFragmentToHoroscopeDetailFragment(horoscopeId)
             findNavController().navigate(action)
         }
         binding.horoscopeRecyclerView.adapter = adapter
 
-        // Observar los horóscopos y actualizarlos en el RecyclerView
         viewModel.horoscopes.observe(viewLifecycleOwner, { horoscopes ->
             adapter.submitList(horoscopes)
         })

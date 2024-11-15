@@ -25,14 +25,11 @@ class HoroscopeDetailFragment : Fragment() {
     ): View? {
         binding = FragmentHoroscopeDetailBinding.inflate(inflater, container, false)
 
-        // Inicializa las dependencias necesarias (apiService, database)
-        apiService = ApiService.create() // Usa el método create de ApiService
-        database = HoroscopeDatabase.getInstance(requireContext()) // Usa getInstance para la base de datos
+        apiService = ApiService.create()
+        database = HoroscopeDatabase.getInstance(requireContext())
 
-        // Crea el repository pasando las dependencias
         repository = HoroscopeRepository(apiService, database)
 
-        // Usa la ViewModelFactory para crear el ViewModel
         val factory = HoroscopeDetailViewModelFactory(repository)
         viewModel = ViewModelProvider(this, factory).get(HoroscopeDetailViewModel::class.java)
 
@@ -41,8 +38,20 @@ class HoroscopeDetailFragment : Fragment() {
 
         viewModel.horoscopeDetail.observe(viewLifecycleOwner, { detail ->
             if (detail != null) {
+
                 binding.horoscopeName.text = detail.name
                 binding.horoscopeDescription.text = detail.dates
+                binding.horoscopeDescription.append("\nElemento: ${detail.element}")
+                binding.horoscopeDescription.append("\nPlaneta Regente: ${detail.rulingPlanet}")
+                binding.horoscopeDescription.append("\nSímbolo: ${detail.symbol}")
+                binding.horoscopeDescription.append("\nColor: ${detail.color}")
+                binding.horoscopeDescription.append("\nDescripción: ${detail.description}")
+
+                binding.horoscopeStrengths.text = "Fortalezas: ${detail.strengths?.joinToString(", ")}"
+                binding.horoscopeWeaknesses.text = "Debilidades: ${detail.weaknesses?.joinToString(", ")}"
+                binding.horoscopeCompatibility.text = "Compatibilidad: ${detail.compatibility?.joinToString(", ")}"
+
+                // Carga la imagen
                 Glide.with(this)
                     .load(detail.imageUrl)
                     .into(binding.horoscopeImage)

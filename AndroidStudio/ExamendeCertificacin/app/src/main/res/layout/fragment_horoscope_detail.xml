@@ -24,6 +24,27 @@
         android:layout_height="wrap_content"
         android:paddingTop="4dp" />
 
+       <TextView
+        android:id="@+id/horoscopeStrengths"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="8dp"
+        android:text="Fortalezas: " />
+
+    <TextView
+        android:id="@+id/horoscopeWeaknesses"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="8dp"
+        android:text="Debilidades: " />
+
+    <TextView
+        android:id="@+id/horoscopeCompatibility"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="8dp"
+        android:text="Compatibilidad: " />
+
     <Button
         android:id="@+id/emailButton"
         android:layout_width="wrap_content"

@@ -8,7 +8,7 @@
 
         <string name="horoscope_description">This is the description of the horoscope.</string>
 
-        <string name="request_info_button_text">Information</string>
+        <string name="request_info_button_text">Enviar Información</string>
         <string name="email_request_text">Request Information via Email</string>
 
 </resources>
