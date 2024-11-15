@@ -1,9 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Tema principal de la aplicación sin tilde -->
+    <style name="Theme.ExamenDeCertificacin" parent="Theme.MaterialComponents.Light.DarkActionBar">
+        <!-- Colores principales -->
+        <item name="colorPrimary">@color/primary_color</item>
+        <item name="colorPrimaryDark">@color/dark_primary_color</item>
+        <item name="colorPrimaryVariant">@color/dark_primary_color</item>
+        <item name="colorOnPrimary">@color/text_icons</item>
 
-    <style name="Theme.ExamenDeCertificación" parent="Base.Theme.ExamenDeCertificación">
-        <!-- Transparent system bars for edge-to-edge. -->
-        <item name="android:navigationBarColor">@android:color/transparent</item>
-        <item name="android:statusBarColor">@android:color/transparent</item>
-        <item name="android:windowLightStatusBar">?attr/isLightTheme</item>
+        <!-- Colores secundarios (acentos) -->
+        <item name="colorSecondary">@color/accent_color</item>
+        <item name="colorOnSecondary">@color/primary_text</item>
+
+        <!-- Textos y fondo -->
+        <item name="android:textColorPrimary">@color/primary_text</item>
+        <item name="android:textColorSecondary">@color/secondary_text</item>
+        <item name="android:colorBackground">@color/light_primary_color</item>
+
+        <!-- Otros elementos -->
+        <item name="colorSurface">@color/light_primary_color</item>
+        <item name="colorOnSurface">@color/primary_text</item>
+        <!--<item name="colorDivider">@color/divider_color</item>-->
+    </style>
+
+    <!-- Tema para botones -->
+    <style name="Widget.MyApp.Button" parent="Widget.MaterialComponents.Button">
+        <item name="backgroundTint">@color/primary_color</item>
+        <item name="android:textColor">@color/text_icons</item>
+    </style>
+
+    <!-- Tema para TextInputLayout -->
+    <style name="Widget.MyApp.TextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.FilledBox">
+        <item name="boxBackgroundColor">@color/light_primary_color</item>
+        <item name="android:textColorHint">@color/secondary_text</item>
     </style>
 </resources>

@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Tema principal de la aplicación -->
-    <style name="Theme.ExamenDeCertificación" parent="Theme.MaterialComponents.Light.DarkActionBar">
+    <!-- Tema principal de la aplicación sin tilde -->
+    <style name="Theme.ExamenDeCertificacin" parent="Theme.MaterialComponents.Light.DarkActionBar">
         <!-- Colores principales -->
         <item name="colorPrimary">@color/primary_color</item>
         <item name="colorPrimaryDark">@color/dark_primary_color</item>
         <item name="colorPrimaryVariant">@color/dark_primary_color</item>
         <item name="colorOnPrimary">@color/text_icons</item>
 
-        <!-- Colores secundarios (accentos) -->
+        <!-- Colores secundarios (acentos) -->
         <item name="colorSecondary">@color/accent_color</item>
         <item name="colorOnSecondary">@color/primary_text</item>
 
@@ -20,10 +20,10 @@
         <!-- Otros elementos -->
         <item name="colorSurface">@color/light_primary_color</item>
         <item name="colorOnSurface">@color/primary_text</item>
-        <item name="colorDivider">@color/divider_color</item>
-    </style>
+        <!--<item name="colorDivider">@color/divider_color</item>-->
+</style>
 
-    <!-- Tema para botones -->
+<!-- Tema para botones -->
     <style name="Widget.MyApp.Button" parent="Widget.MaterialComponents.Button">
         <item name="backgroundTint">@color/primary_color</item>
         <item name="android:textColor">@color/text_icons</item>
